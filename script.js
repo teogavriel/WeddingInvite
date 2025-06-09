@@ -2,6 +2,20 @@ let lastScrollTop = 0;
 const nav = document.getElementById('main-nav');
 const toggleBtn = document.getElementById('menu-toggle');
 
+
+// Language detection
+const browserLang = navigator.language.startsWith('en') ? 'en' : 'es';
+const i18n = STRINGS[browserLang];
+
+// Replace i18n text in DOM
+document.querySelectorAll('[data-i18n]').forEach(el => {
+  const key = el.getAttribute('data-i18n');
+  if (i18n[key]) {
+    el.textContent = i18n[key];
+  }
+});
+
+
 // Show/hide nav on scroll
 window.addEventListener('scroll', () => {
   const current = window.pageYOffset || document.documentElement.scrollTop;

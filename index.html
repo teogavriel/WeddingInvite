@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="style.css" />
   <script defer src="script.js"></script>
   <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+  <script src="docs/strings.js"></script>
 
 </head>
 <body>
@@ -35,7 +36,7 @@
   <main>
     <section id="home" class="hero">
       <div class="hero-content">
-        <p id="greeting">Hola, estás invitada a la boda de</p>
+        <p id="greeting" data-i18n="home_greeting_generic">Hola, estás invitada a la boda de</p>
         <h1>Jazmin & Teodosis</h1>
         <div id="countdown" class="countdown">000d 00h 00m 00s</div>
         <button id="add-to-calendar" aria-label="Agregar al calendario">
@@ -45,7 +46,7 @@
     </section>
 
     <section id="timeline" class="timeline-section">
-      <h2>Línea de tiempo</h2>
+      <h2 data-i18n="timeline">Línea de tiempo</h2>
       <div class="timeline">
 
         <div class="timeline-item left" data-aos="fade-right">
@@ -116,7 +117,7 @@
     </section>
 
     <section id="where" class="where-section">
-      <h2><span class="map-icon">📍</span> Dónde</h2>
+      <h2 data-i18n="where"><span class="map-icon">📍</span> Dónde</h2>
       <p class="venue-name">Finca de eventos Los Higuerones</p>
       <p class="venue-location">San Rafael de Heredia</p>
       <div class="map-buttons">
@@ -127,14 +128,14 @@
 
 
     <section id="dresscode" class="dresscode-section">
-      <h2>Código de vestimenta</h2>
+      <h2 data-i18n="dresscode">Código de vestimenta</h2>
 
       <div class="dresscode-labels">
         <span class="tooltip-label" data-tooltip="Vestimenta elegante: trajes completos, vestidos largos o cóctel.">Formal</span>
         <span class="tooltip-label" data-tooltip="Vestimenta cuidada: camisas, blusas, pantalones de vestir, vestidos simples.">Semiformal</span>
       </div>
 
-      <h3>Evitar este color</h3>
+      <h3 data-i18n="avoid_colors">Evitar este color</h3>
 
       <div class="color-circles">
         <div class="color-circle tooltip-color" style="background-color: #ffffff;" data-tooltip="Blanco"></div>
@@ -146,8 +147,8 @@
 
 
     <section id="rsvp" class="rsvp-section">
-      <h2>Confirmar asistencia</h2>
-      <button id="rsvp-toggle">Confirmar asistencia</button>
+      <h2 data-i18n="rsvp_title">Confirmar asistencia</h2>
+      <button id="rsvp-toggle" data-i18n="rsvp_button">Confirmar asistencia</button>
 
       <div id="rsvp-form-container" class="hidden">
         <!-- Form will be injected via JS -->
@@ -155,9 +156,9 @@
     </section>
 
     <section id="gifts" class="gifts-section">
-      <h2>Regalos</h2>
-      <p>Su presencia en nuestra boda será el mejor regalo. Pero si desean darnos otro obsequio, les agradeceremos que sea dinero para ayudarnos a pagar la luna de miel.</p>
-      <button id="gift-button">💸 Transferencias</button>
+      <h2 data-i18n="gifts_title">Regalos</h2>
+      <p data-i18n="gifts_text">Su presencia en nuestra boda será el mejor regalo. Pero si desean darnos otro obsequio, les agradeceremos que sea dinero para ayudarnos a pagar la luna de miel.</p>
+      <button id="gift-button" data-i18n="gifts_btn">💸 Transferencias</button>
 
       <!-- Modal -->
       <div id="gift-modal" class="modal hidden">
@@ -173,7 +174,7 @@
 
 
     <section id="photos" class="photos-section">
-      <h2>Fotos</h2>
+      <h2 data-i18n="photos">Fotos</h2>
       <div class="carousel-container">
         <button class="carousel-btn left" aria-label="Anterior">◀</button>
         <div class="carousel-track" id="carousel-track">
@@ -189,7 +190,7 @@
     </section>
 
     <section id="thankyou" class="thankyou-section">
-      <p>Gracias por acompañarnos</p>
+      <p data-i18n="thankyou" >Gracias por acompañarnos</p>
     </section>
 
   </main>
