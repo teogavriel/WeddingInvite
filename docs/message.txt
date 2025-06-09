@@ -1,0 +1,310 @@
+# AI-Driven Development Guide
+
+This guide outlines a systematic approach to developing applications using AI assistance, particularly with tools like Cursor and large language models.
+
+## 0. Initial Setup (5-10 minutes)
+
+### 0.1 Project Documentation Structure
+1. Create the `docs` directory:
+```bash
+mkdir -p docs
+```
+
+2. Create the core documentation file:
+```bash
+touch docs/spec.md
+```
+
+3. (Optional) Create a reference index file:
+```bash
+touch docs/README.md
+```
+
+### 0.2 Essential Settings
+1. Enable Privacy Mode (recommended)
+2. Select appropriate LLM model
+3. Configure API settings if using custom providers
+4. Set up version control integration
+
+### 0.3 File References
+Use links to reference other files in your documentation:
+```markdown
+Reference related files:
+- [Specification](./spec.md)
+```
+
+## 1. Idea Honing & Specification (15-20 minutes)
+
+### 1.1 Initial Brainstorming Prompt
+```prompt
+Ask me one question at a time so we can develop a thorough, step-by-step spec for this idea. Each question should build on my previous answers, and our end goal is to have a detailed specification I can hand off to a developer. Let's do this iteratively and dig into every relevant detail. Remember, only one question at a time.
+
+Here's the idea:
+<YOUR_IDEA>
+```
+
+### 1.2 Specification Creation Prompt
+```prompt
+Now that we've wrapped up the brainstorming process, can you compile our findings into a comprehensive, developer-ready specification? Include all relevant requirements, architecture choices, data handling details, error handling strategies, and a testing plan so a developer can immediately begin implementation.
+
+Create this as docs/spec.md and include cross-references to other documentation files.
+```
+
+Save this as `docs/spec.md` in your repository.
+
+## 2. Project Planning (15-30 minutes)
+
+### 2.1 Test-Driven Development Planning Prompt
+```prompt
+Draft a detailed, step-by-step blueprint for building this project. Then, once you have a solid plan, break it down into small, iterative chunks that build on each other. Look at these chunks and then go another round to break it into small steps. Review the results and make sure that the steps are small enough to be implemented safely with strong testing, but big enough to move the project forward. Iterate until you feel that the steps are right sized for this project.
+
+From here you should have the foundation to provide a series of prompts for a code-generation LLM that will implement each step in a test-driven manner. Prioritize best practices, incremental progress, and early testing, ensuring no big jumps in complexity at any stage. Make sure that each prompt builds on the previous prompts, and ends with wiring things together. There should be no hanging or orphaned code that isn't integrated into a previous step.
+
+<YOUR_SPEC>
+```
+#### Or the non-TDD approach
+
+```prompt
+Draft a detailed, step-by-step blueprint for building this project. Then, once you have a solid plan, break it down into small, iterative chunks that build on each other. Look at these chunks and then go another round to break it into small steps. review the results and make sure that the steps are small enough to be implemented safely, but big enough to move the project forward. Iterate until you feel that the steps are right sized for this project.
+
+From here you should have the foundation to provide a series of prompts for a code-generation LLM that will implement each step. Prioritize best practices, and incremental progress, ensuring no big jumps in complexity at any stage. Make sure that each prompt builds on the previous prompts, and ends with wiring things together. There should be no hanging or orphaned code that isn't integrated into a previous step.
+
+Make sure and separate each prompt section. Use markdown. Each prompt should be tagged as text using code tags. The goal is to output prompts, but context, etc is important as well.
+
+<SPEC>
+```
+
+### 2.2 Create Project Documentation
+
+All documentation should be created in the `docs` directory with the `.md` extension.
+
+#### Best Practices for All Prompts:
+1. Use explicit role and context setting
+2. Request specific output format
+3. Include validation criteria
+4. Set clear constraints
+5. Request examples where appropriate
+
+#### 2.2.1 App Flow Documentation Prompt
+```prompt
+You are a senior software architect specializing in user experience design. Your task is to create docs/app_flow.md for [PROJECT_NAME] with [SCOPE] timeline.
+
+Reference related files:
+- Specification (./spec.md)
+
+Output Format: Create a markdown document with clear headings and diagrams using mermaid.js syntax.
+
+Include specifically:
+1. User Journey Map
+   - Entry points
+   - Critical paths
+   - Exit points
+2. Core Interaction Flows (only MVP features)
+3. Error Handling Flows
+4. Success Metrics
+
+Constraints:
+- Focus only on MVP features
+- Maximum 3-4 core user flows
+- Each flow should be implementable within [SCOPE] timeline
+- Exclude any nice-to-have features
+
+Provide at least one detailed example flow with both happy path and error scenarios.
+```
+
+#### 2.2.2 Backend Structure Documentation Prompt
+```prompt
+You are a backend systems architect with expertise in scalable applications. Create docs/backend_structure.md for [PROJECT_NAME] with [SCOPE] timeline.
+
+Reference related files:
+- Specification (./spec.md)
+
+Output Format: Create a markdown document with clear sections, code examples, and architecture diagrams.
+
+Document specifically:
+1. Core API Structure
+   - Endpoint patterns
+   - Request/response formats
+   - Error handling standards
+2. Data Models (only MVP entities)
+3. Authentication Flow (if in scope)
+4. External Dependencies (only critical ones)
+
+Constraints:
+- Include only MVP requirements
+- Maximum 5 core endpoints
+- Focus on maintainable patterns
+- Exclude optimization features
+
+For each section, provide a practical example with code snippets and validation criteria.
+```
+
+#### 2.2.3 Frontend Guidelines Documentation Prompt
+```prompt
+You are a senior frontend architect specializing in React and modern web applications. Create docs/frontend_guidelines.md for [PROJECT_NAME] with [SCOPE] timeline.
+
+Reference related files:
+- Specification (./spec.md)
+
+Output Format: Create a markdown document with component examples and code snippets.
+
+Detail specifically:
+1. Component Architecture
+   - Core components only
+   - State management patterns
+   - Data flow diagram
+2. Styling Standards
+3. Error/Loading States
+4. Accessibility Requirements (WCAG A level only)
+
+Constraints:
+- Keep component hierarchy maximum 3 levels deep
+- Include only MVP features
+- Focus on reusable patterns
+- Exclude advanced optimizations
+
+Provide a concrete example of one core component with proper typing, error handling, and loading states.
+```
+
+#### 2.2.4 Implementation Plan Documentation Prompt
+```prompt
+You are a technical project manager with expertise in agile development. Create docs/implementation_plan.md for [PROJECT_NAME] with [SCOPE] timeline.
+
+Reference related files:
+- Specification (./spec.md)
+
+Output Format: Create a markdown document with clear timeline, milestones, and task breakdowns.
+
+Include specifically:
+1. Timeline Breakdown
+   - Tasks with hour/day estimates
+   - Dependencies
+   - Critical path items
+2. Testing Strategy (MVP only)
+3. Deployment Milestones
+4. Risk Mitigation Plan
+
+Constraints:
+- All tasks must fit within [SCOPE]
+- Include only MVP features
+- Maximum 3 critical path items
+- Focus on essential testing only
+
+Provide specific acceptance criteria for each milestone.
+```
+
+#### 2.2.5 Tech Stack Documentation Prompt
+```prompt
+You are a solutions architect with expertise in modern web technologies. Create docs/tech_stack.md for [PROJECT_NAME] with [SCOPE] timeline.
+
+Reference related files:
+- Specification (./spec.md)
+
+Output Format: Create a markdown document with clear justifications and setup instructions.
+
+Detail specifically:
+1. Core Technologies
+   - Frontend framework and essential libraries
+   - Backend technologies
+   - Database choice
+2. Development Tools
+3. Deployment Requirements
+4. Version Requirements
+
+Constraints:
+- Include only technologies needed for MVP
+- Maximum 1 choice per category
+- Focus on stable, well-documented options
+- Exclude experimental features
+
+Provide specific version numbers and compatibility requirements.
+```
+
+#### 2.2.6 Project Requirements Documentation Prompt
+```prompt
+You are a senior business analyst with technical expertise. Create docs/project_requirements.md for [PROJECT_NAME] with [SCOPE] timeline.
+
+Reference related files:
+- Specification (./spec.md)
+
+Output Format: Create a markdown document with clear categorization and validation criteria.
+
+Detail specifically:
+1. Functional Requirements
+   - User stories (MVP only)
+   - Acceptance criteria
+2. Technical Requirements
+   - Performance benchmarks
+   - Security requirements
+3. Success Metrics
+   - MVP validation points
+   - Quality standards
+
+Constraints:
+- Maximum 5 core user stories
+- Include only MVP features
+- Focus on measurable criteria
+- Exclude nice-to-have features
+
+Provide specific acceptance criteria for each requirement.
+```
+
+#### 2.2.7 Design Guidelines Documentation Prompt
+```prompt
+You are a senior UI/UX designer with expertise in design systems, responsive interfaces, and accessibility.
+
+We're going to create a complete `docs/design_guidelines.md` file for the project **[PROJECT_NAME]**, scoped to the [SCOPE] timeline (e.g., MVP, beta launch, v1.0).
+
+# Objective:
+Create a practical, implementation-ready document that defines the project's visual and interaction design system. This will be used directly by frontend developers.
+
+# Instructions:
+Ask me **one question at a time**. Each answer should inform the next. Let’s build the spec **iteratively and collaboratively**.
+
+Your goal is to guide me through:
+1. **Design System Foundations**
+   - Color palette (with HEX codes)
+   - Typography (font families, sizes, weights)
+   - Spacing system
+   - Iconography style
+2. **Component Design Patterns**
+   - Button variations
+   - Form elements (inputs, selects, checkboxes)
+   - Navigation elements
+   - Card/container styles
+3. **Responsive Design Guidelines**
+   - Breakpoints
+   - Mobile adaptations
+4. **Accessibility Standards**
+   - Color contrast requirements
+   - Focus state specs
+   - Screen reader considerations
+
+# Constraints:
+- Limit color palette to **5 primary colors max** (with optional tints/shades)
+- Use **maximum 2 font families**
+- Include **only MVP components**
+- Prioritize **practical, implementable design specs**
+
+# Output Format:
+A single markdown document with:
+- Visual examples or descriptions
+- Color codes and spacing units
+- Component usage guidelines
+- Sample code snippets if needed
+
+Start by asking:  
+**“What is the overall visual tone or style you want for this product?”**  
+(Examples: minimalistic, professional, playful, futuristic)
+
+After each answer, ask the next most relevant question to develop a complete and cohesive spec.
+```
+
+### 2.3 Todo Creation
+```prompt
+Create docs/todo.md that I can use as a checklist. Reference all relevant documentation files:
+- All Docs From (./docs/*)
+
+Be thorough and include all implementation steps.
+Keep the tasks within the [SCOPE]
+```

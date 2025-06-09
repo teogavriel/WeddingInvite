@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Boda de Jazmin & Teodosis</title>
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="script.js"></script>
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+
+</head>
+<body>
+
+  <!-- Floating Hamburger Icon -->
+  <button id="menu-toggle" aria-label="Abrir menú">
+    &#9776;
+  </button>
+
+  <!-- Navigation (to be populated later) -->
+  <nav id="main-nav" class="hidden">
+    <ul>
+      <li><a href="#home">Inicio</a></li>
+      <li><a href="#timeline">Línea de tiempo</a></li>
+      <li><a href="#where">Dónde</a></li>
+      <li><a href="#dresscode">Código</a></li>
+      <li><a href="#rsvp">Asistencia</a></li>
+      <li><a href="#gifts">Regalos</a></li>
+      <li><a href="#photos">Fotos</a></li>
+      <li><a href="#thankyou">Gracias</a></li>
+    </ul>
+  </nav>
+
+
+  <!-- Sections -->
+  <main>
+    <section id="home" class="hero">
+      <div class="hero-content">
+        <p id="greeting">Hola, estás invitada a la boda de</p>
+        <h1>Jazmin & Teodosis</h1>
+        <div id="countdown" class="countdown">000d 00h 00m 00s</div>
+        <button id="add-to-calendar" aria-label="Agregar al calendario">
+          📅 Agregar al calendario
+        </button>
+      </div>
+    </section>
+
+    <section id="timeline" class="timeline-section">
+      <h2>Línea de tiempo</h2>
+      <div class="timeline">
+
+        <div class="timeline-item left" data-aos="fade-right">
+          <div class="timeline-img" style="background-image: url('assets/images/2015.jpg');"></div>
+          <div class="timeline-content">
+            <h3>2015</h3>
+            <p>Nos conocimos</p>
+          </div>
+        </div>
+
+        <div class="timeline-item right" data-aos="fade-left">
+          <div class="timeline-img" style="background-image: url('assets/images/2017.jpg');"></div>
+          <div class="timeline-content">
+            <h3>2017</h3>
+            <p>Empezamos a salir</p>
+          </div>
+        </div>
+
+        <div class="timeline-item left" data-aos="fade-right">
+          <div class="timeline-img" style="background-image: url('assets/images/2019.jpg');"></div>
+          <div class="timeline-content">
+            <h3>2019</h3>
+            <p>Nos pasamos a vivir juntos</p>
+          </div>
+        </div>
+
+        <div class="timeline-item right" data-aos="fade-left">
+          <div class="timeline-img" style="background-image: url('assets/images/2020a.jpg');"></div>
+          <div class="timeline-content">
+            <h3>2020</h3>
+            <p>Adoptamos nuestro primer gato Kathy</p>
+          </div>
+        </div>
+
+        <div class="timeline-item left" data-aos="fade-right">
+          <div class="timeline-img" style="background-image: url('assets/images/2020b.jpg');"></div>
+          <div class="timeline-content">
+            <h3>2020</h3>
+            <p>Adoptamos a Hestia</p>
+          </div>
+        </div>
+
+        <div class="timeline-item right" data-aos="fade-left">
+          <div class="timeline-img" style="background-image: url('assets/images/2022.jpg');"></div>
+          <div class="timeline-content">
+            <h3>2022</h3>
+            <p>Nos comprometimos</p>
+          </div>
+        </div>
+
+        <div class="timeline-item left" data-aos="fade-right">
+          <div class="timeline-img" style="background-image: url('assets/images/2024.jpg');"></div>
+          <div class="timeline-content">
+            <h3>2024</h3>
+            <p>Adoptamos nuestro tercer gato Ares</p>
+          </div>
+        </div>
+
+        <div class="timeline-item right" data-aos="fade-left">
+          <div class="timeline-img" style="background-image: url('assets/images/2025.jpg');"></div>
+          <div class="timeline-content">
+            <h3>2025</h3>
+            <p>¡Nos casamos!</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="where" class="where-section">
+      <h2><span class="map-icon">📍</span> Dónde</h2>
+      <p class="venue-name">Finca de eventos Los Higuerones</p>
+      <p class="venue-location">San Rafael de Heredia</p>
+      <div class="map-buttons">
+        <a href="https://maps.app.goo.gl/pfj7ES2vQQxWiFio8" target="_blank" class="map-btn">Ir con Google Maps</a>
+        <a href="https://ul.waze.com/ul?ll=10.02823545%2C-84.10784753&navigate=yes&zoom=17&utm_campaign=default&utm_source=waze_website&utm_medium=lm_share_location" target="_blank" class="map-btn">Ir con Waze</a>
+      </div>
+    </section>
+
+
+    <section id="dresscode" class="dresscode-section">
+      <h2>Código de vestimenta</h2>
+
+      <div class="dresscode-labels">
+        <span class="tooltip-label" data-tooltip="Vestimenta elegante: trajes completos, vestidos largos o cóctel.">Formal</span>
+        <span class="tooltip-label" data-tooltip="Vestimenta cuidada: camisas, blusas, pantalones de vestir, vestidos simples.">Semiformal</span>
+      </div>
+
+      <h3>Evitar este color</h3>
+
+      <div class="color-circles">
+        <div class="color-circle tooltip-color" style="background-color: #ffffff;" data-tooltip="Blanco"></div>
+        <div class="color-circle tooltip-color" style="background-color: #b5b9b7;" data-tooltip="Beige (#b5b9b7)"></div>
+        <div class="color-circle tooltip-color" style="background-color: #a8b99f;" data-tooltip="Verde olivo (#a8b99f)"></div>
+        <div class="color-circle tooltip-color" style="background-color: #98a4b0;" data-tooltip="Celeste (#98a4b0)"></div>
+      </div>
+    </section>
+
+
+    <section id="rsvp" class="rsvp-section">
+      <h2>Confirmar asistencia</h2>
+      <button id="rsvp-toggle">Confirmar asistencia</button>
+
+      <div id="rsvp-form-container" class="hidden">
+        <!-- Form will be injected via JS -->
+      </div>
+    </section>
+
+    <section id="gifts" class="gifts-section">
+      <h2>Regalos</h2>
+      <p>Su presencia en nuestra boda será el mejor regalo. Pero si desean darnos otro obsequio, les agradeceremos que sea dinero para ayudarnos a pagar la luna de miel.</p>
+      <button id="gift-button">💸 Transferencias</button>
+
+      <!-- Modal -->
+      <div id="gift-modal" class="modal hidden">
+        <div class="modal-content">
+          <button class="close-modal" aria-label="Cerrar">✖</button>
+          <h3>Información de transferencia</h3>
+          <p>💳 <strong>Cuenta IBAN:</strong> CR0000000339999</p>
+          <p>🏦 <strong>Cuenta BAC:</strong> 398884849</p>
+          <p>📱 <strong>Sinpe Móvil:</strong> 88172226</p>
+        </div>
+      </div>
+    </section>
+
+
+    <section id="photos" class="photos-section">
+      <h2>Fotos</h2>
+      <div class="carousel-container">
+        <button class="carousel-btn left" aria-label="Anterior">◀</button>
+        <div class="carousel-track" id="carousel-track">
+          <img src="assets/images/photo1.jpg" alt="Foto 1" />
+          <img src="assets/images/photo2.jpg" alt="Foto 2" />
+          <img src="assets/images/photo3.jpg" alt="Foto 3" />
+          <img src="assets/images/photo4.jpg" alt="Foto 4" />
+          <img src="assets/images/photo5.jpg" alt="Foto 5" />
+          <img src="assets/images/photo6.jpg" alt="Foto 6" />
+        </div>
+        <button class="carousel-btn right" aria-label="Siguiente">▶</button>
+      </div>
+    </section>
+
+    <section id="thankyou" class="thankyou-section">
+      <p>Gracias por acompañarnos</p>
+    </section>
+
+  </main>
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 800,
+      once: true
+    });
+  </script>
+
+</body>
+</html>
