@@ -33,6 +33,16 @@ toggleBtn.addEventListener('click', () => {
   nav.classList.toggle('active');
 });
 
+
+// Close mobile menu when link is clicked
+document.querySelectorAll('#main-nav a').forEach(link => {
+  link.addEventListener('click', () => {
+    if (nav.classList.contains('active')) {
+      nav.classList.remove('active');
+    }
+  });
+});
+
 // Get elements
 const greetingEl = document.getElementById('greeting');
 const countdownEl = document.getElementById('countdown');
