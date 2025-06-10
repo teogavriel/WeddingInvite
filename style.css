@@ -160,14 +160,28 @@ section {
    Hero Section
 ================================== */
 .hero {
+  position: relative;
+  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100vh;
-  background: url('assets/images/hero-bg.jpeg') center/cover no-repeat;
   text-align: center;
-  color: #fff;
-  position: relative;
+  color: white;
+  overflow: hidden;
+}
+
+.hero-background {
+  position: absolute;
+  inset: 0;
+  background: url('assets/images/hero-low.jpg') center/cover no-repeat;
+  filter: blur(8px);
+  transition: background-image 0.5s ease-out, filter 0.5s ease-out;
+  z-index: 0;
+}
+
+.hero.loaded .hero-background {
+  background-image: url('assets/images/hero-full.jpg');
+  filter: blur(0);
 }
 
 .hero::before {

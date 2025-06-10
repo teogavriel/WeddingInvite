@@ -76,6 +76,17 @@ function updateCountdown() {
   countdownEl.textContent = `${days}d ${hours}h ${mins}m ${secs}s`;
 }
 
+
+window.addEventListener('load', () => {
+  const hero = document.querySelector('.hero');
+  const bg = new Image();
+  bg.src = 'assets/images/hero-full.jpg';
+  bg.onload = () => {
+    hero.classList.add('loaded');
+  };
+});
+
+
 setInterval(updateCountdown, 1000);
 updateCountdown();
 
