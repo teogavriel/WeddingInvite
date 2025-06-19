@@ -1,7 +1,7 @@
 // strings.js
 const STRINGS = {
   es: {
-    home_greeting_generic: "Hola, estás invitada a la boda de",
+    home_greeting_generic: "Nos casamos!",
     rsvp_title: "Confirmar asistencia",
     rsvp_button: "Confirmar asistencia",
     gifts_title: "Regalos",
@@ -15,7 +15,7 @@ const STRINGS = {
     photos: "Fotos",
   },
   en: {
-    home_greeting_generic: "Hello, you're invited to the wedding of",
+    home_greeting_generic: "We are getting married!",
     rsvp_title: "RSVP",
     rsvp_button: "Confirm Attendance",
     gifts_title: "Gifts",

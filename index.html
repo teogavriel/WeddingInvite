@@ -5,20 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Boda de Jazmin & Teodosis</title>
   <link rel="stylesheet" href="style.css" />
-  <script defer src="script.js"></script>
   <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
   <script src="docs/strings.js"></script>
-
+  <script defer src="script.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Ephesis&display=swap" rel="stylesheet">
 </head>
 <body>
 
-  <!-- Floating Hamburger Icon -->
-  <button id="menu-toggle" aria-label="Abrir menú">
-    &#9776;
-  </button>
+  <!-- Botón Hamburguesa -->
+  <button id="menu-toggle" aria-label="Abrir menú">&#9776;</button>
 
-  <!-- Navigation (to be populated later) -->
-  <nav id="main-nav" class="hidden">
+  <!-- Navegación -->
+  <nav id="main-nav">
     <ul>
       <li><a href="#home">Inicio</a></li>
       <li><a href="#timeline">Línea de tiempo</a></li>
@@ -27,153 +25,179 @@
       <li><a href="#rsvp">Asistencia</a></li>
       <li><a href="#gifts">Regalos</a></li>
       <li><a href="#photos">Fotos</a></li>
-      <li><a href="#thankyou">Gracias</a></li>
     </ul>
   </nav>
 
+  <!-- HERO: Portada principal -->
+  <section id="home" class="hero">
+    <div class="hero-background" id="hero-bg"></div>
+    <div class="hero-content">
+      <p id="greeting" data-i18n="home_greeting_generic" class="hero-greeting">¡Nos casamos!</p>
+      <h1 class="hero-title">Jazmin &<br> Teodosis</h1>
+      <div class="hero-date">21 septiembre 2025</div>
+      <div class="hero-date">10:30am</div>
+      <div id="countdown" class="countdown">000d 00h 00m 00s</div>
+      <!--button id="add-to-calendar" class="calendar-btn" data-tooltip="Agregar al calendario" aria-label="Agregar al calendario">📅</button-->
+    </div>
+  </section>
 
-  <!-- Sections -->
+  <!-- CONTENIDO PRINCIPAL -->
   <main>
-    <section id="home" class="hero">
-      <div class="hero-background" id="hero-bg"></div>
-      <div class="hero-content">
-        <p id="greeting" data-i18n="home_greeting_generic">Hola, estás invitada a la boda de</p>
-        <h1>Jazmin & Teodosis</h1>
-        <div id="countdown" class="countdown">000d 00h 00m 00s</div>
-        <button id="add-to-calendar" aria-label="Agregar al calendario">
-          📅 Agregar al calendario
-        </button>
-      </div>
-    </section>
 
+    <!-- Timeline -->
     <section id="timeline" class="timeline-section">
       <h2 data-i18n="timeline">Línea de tiempo</h2>
       <div class="timeline">
 
-        <div class="timeline-item left" data-aos="fade-right">
-          <div class="timeline-img" style="background-image: url('assets/images/2015.jpg');"></div>
-          <div class="timeline-content">
+        <div class="timeline-item start">
+          <div class="timeline-img" style="background: transparent; border: none; box-shadow: none;"></div>
+          <div class="timeline-content timeline-content-center">
             <h3>2015</h3>
-            <p>Nos conocimos</p>
+            <p>Aquí se cruzaron nuestras vidas por primera vez, este año da comienzo a una amistad que durará por siempre</p>
           </div>
         </div>
 
-        <div class="timeline-item right" data-aos="fade-left">
+        <div class="timeline-item right">
           <div class="timeline-img" style="background-image: url('assets/images/2017.jpg');"></div>
-          <div class="timeline-content">
+          <div class="timeline-content" >
             <h3>2017</h3>
-            <p>Empezamos a salir</p>
+            <p>Iniciamos nuestra relación como novios, andabamos bien pegas por todo lado</p>
           </div>
         </div>
 
-        <div class="timeline-item left" data-aos="fade-right">
-          <div class="timeline-img" style="background-image: url('assets/images/2019.jpg');"></div>
+        <div class="timeline-item left">
+          <div class="timeline-img" style="background-image: url('assets/images/2018.jpg');"></div>
           <div class="timeline-content">
-            <h3>2019</h3>
-            <p>Nos pasamos a vivir juntos</p>
+            <h3>2018</h3>
+            <p>Decidimos aventurarnos a vivir juntos</p>
           </div>
         </div>
 
-        <div class="timeline-item right" data-aos="fade-left">
+        <div class="timeline-item right" >
           <div class="timeline-img" style="background-image: url('assets/images/2020a.jpg');"></div>
           <div class="timeline-content">
             <h3>2020</h3>
-            <p>Adoptamos nuestro primer gato Kathy</p>
+            <p>Nuestra gata Kathy nos eligió como su familia</p>
           </div>
         </div>
 
-        <div class="timeline-item left" data-aos="fade-right">
+        <div class="timeline-item left" >
           <div class="timeline-img" style="background-image: url('assets/images/2020b.jpg');"></div>
           <div class="timeline-content">
             <h3>2020</h3>
-            <p>Adoptamos a Hestia</p>
+            <p>Fuimos a buscar adoptar un gato para que acompañara a Kathy, Hestia nos eligió es demasiado chineada con nosotros, pero no se lleva con Kathy</p>
           </div>
         </div>
 
-        <div class="timeline-item right" data-aos="fade-left">
+        <div class="timeline-item right" >
           <div class="timeline-img" style="background-image: url('assets/images/2022.jpg');"></div>
           <div class="timeline-content">
             <h3>2022</h3>
-            <p>Nos comprometimos</p>
+            <p>Hicimos nuestro primer viaje al extranjero y decidimos comprometernos en el lugar más cliché del mundo, frente a la Torre Eiffel</p>
           </div>
         </div>
 
-        <div class="timeline-item left" data-aos="fade-right">
+        <div class="timeline-item left" >
           <div class="timeline-img" style="background-image: url('assets/images/2024.jpg');"></div>
           <div class="timeline-content">
             <h3>2024</h3>
-            <p>Adoptamos nuestro tercer gato Ares</p>
+            <p>Mientras le haciamos casa cuna a unos lindos gatitos rescatadas, el pequeño Ares nos robó el corazón </p>
           </div>
         </div>
 
-        <div class="timeline-item right" data-aos="fade-left">
-          <div class="timeline-img" style="background-image: url('assets/images/2025.jpg');"></div>
-          <div class="timeline-content">
+        <div class="timeline-item end">
+          <div class="timeline-img" style="background: transparent; border: none; box-shadow: none;"></div>
+          <div class="timeline-content timeline-content-center">
             <h3>2025</h3>
-            <p>¡Nos casamos!</p>
+            <p>Este año por fin diremos: "¡Sí acepto!" con la compañía de todos ustedes</p>
           </div>
         </div>
 
       </div>
     </section>
 
+    <!-- Lugar -->
     <section id="where" class="where-section">
-      <h2 data-i18n="where"><span class="map-icon">📍</span> Dónde</h2>
-      <p class="venue-name">Finca de eventos Los Higuerones</p>
-      <p class="venue-location">San Rafael de Heredia</p>
-      <div class="map-buttons">
-        <a href="https://maps.app.goo.gl/pfj7ES2vQQxWiFio8" target="_blank" class="map-btn">Ir con Google Maps</a>
-        <a href="https://ul.waze.com/ul?ll=10.02823545%2C-84.10784753&navigate=yes&zoom=17&utm_campaign=default&utm_source=waze_website&utm_medium=lm_share_location" target="_blank" class="map-btn">Ir con Waze</a>
+      <div class="where-columns">
+        <div class="where-img-col">
+          <img src="assets/images/wedding_arch.webp" alt="Arco de boda" class="where-img" />
+        </div>
+        <div class="where-info-col">
+          <h2 data-i18n="where"><span class="map-icon">📍</span> Dónde</h2>
+          <p class="venue-name">Finca de eventos Los Higuerones</p>
+          <p class="venue-location">San Rafael de Heredia</p>
+          <div class="map-buttons">
+            <a href="https://maps.app.goo.gl/pfj7ES2vQQxWiFio8" target="_blank" class="map-btn">Ir con Google Maps</a>
+            <a href="https://ul.waze.com/ul?ll=10.02823545%2C-84.10784753&navigate=yes&zoom=17&utm_campaign=default&utm_source=waze_website&utm_medium=lm_share_location" target="_blank" class="map-btn">Ir con Waze</a>
+          </div>
+        </div>
       </div>
     </section>
 
-
+    <!-- Código de Vestimenta -->
     <section id="dresscode" class="dresscode-section">
-      <h2 data-i18n="dresscode">Código de vestimenta</h2>
-
-      <div class="dresscode-labels">
-        <span class="tooltip-label" data-tooltip="Vestimenta elegante: trajes completos, vestidos largos o cóctel.">Formal</span>
-        <span class="tooltip-label" data-tooltip="Vestimenta cuidada: camisas, blusas, pantalones de vestir, vestidos simples.">Semiformal</span>
-      </div>
-
-      <h3 data-i18n="avoid_colors">Evitar este color</h3>
-
-      <div class="color-circles">
-        <div class="color-circle tooltip-color" style="background-color: #ffffff;" data-tooltip="Blanco"></div>
-        <div class="color-circle tooltip-color" style="background-color: #b5b9b7;" data-tooltip="Beige (#b5b9b7)"></div>
-        <div class="color-circle tooltip-color" style="background-color: #a8b99f;" data-tooltip="Verde olivo (#a8b99f)"></div>
-        <div class="color-circle tooltip-color" style="background-color: #98a4b0;" data-tooltip="Celeste (#98a4b0)"></div>
+      <div class="dresscode-columns">
+        <div class="dresscode-info-col">
+          <h2 data-i18n="dresscode">Código de vestimenta</h2>
+          <div class="dresscode-labels">
+            <span class="tooltip-label" data-tooltip="Vestimenta elegante: trajes completos, vestidos largos o cóctel.">Formal</span>
+            <span class="tooltip-label" data-tooltip="Vestimenta cuidada: camisas, blusas, pantalones de vestir, vestidos simples.">Semiformal</span>
+          </div>
+          <h3 data-i18n="avoid_colors">Evitar este color</h3>
+          <div class="color-circles">
+            <div class="color-circle tooltip-color" style="background-color: #ffffff;" data-tooltip="Blanco"></div>
+            <div class="color-circle tooltip-color" style="background-color: #b5b9b7;" data-tooltip="Beige (#b5b9b7)"></div>
+            <div class="color-circle tooltip-color" style="background-color: #a8b99f;" data-tooltip="Verde olivo (#a8b99f)"></div>
+            <div class="color-circle tooltip-color" style="background-color: #98a4b0;" data-tooltip="Celeste (#98a4b0)"></div>
+          </div>
+        </div>
+      <!-- Puedes agregar más contenido aquí si lo necesitas -->
+        <div class="dresscode-img-col">
+          <img src="assets/images/family_icons.webp" alt="Dress code familia" class="dresscode-img" />
+        </div>
       </div>
     </section>
 
 
+
+
+
+
+    
+    <!-- Confirmar Asistencia -->
     <section id="rsvp" class="rsvp-section">
       <h2 data-i18n="rsvp_title">Confirmar asistencia</h2>
       <button id="rsvp-toggle" data-i18n="rsvp_button">Confirmar asistencia</button>
-
-      <div id="rsvp-form-container" class="hidden">
-        <!-- Form will be injected via JS -->
-      </div>
+      <div id="rsvp-form-container" class="hidden"></div>
     </section>
 
+    <!-- Regalos -->
     <section id="gifts" class="gifts-section">
       <h2 data-i18n="gifts_title">Regalos</h2>
       <p data-i18n="gifts_text">Su presencia en nuestra boda será el mejor regalo. Pero si desean darnos otro obsequio, les agradeceremos que sea dinero para ayudarnos a pagar la luna de miel.</p>
       <button id="gift-button" data-i18n="gifts_btn">💸 Transferencias</button>
 
-      <!-- Modal -->
       <div id="gift-modal" class="modal hidden">
         <div class="modal-content">
           <button class="close-modal" aria-label="Cerrar">✖</button>
           <h3>Información de transferencia</h3>
-          <p>💳 <strong>Cuenta IBAN:</strong> CR0000000339999</p>
-          <p>🏦 <strong>Cuenta BAC:</strong> 398884849</p>
-          <p>📱 <strong>Sinpe Móvil:</strong> 88172226</p>
+          <p>💳 <strong>Cuenta IBAN Colones:</strong>
+            <span class="copy-account" data-copy="CR32010200007049089468" tabindex="0">CR32010200007049089468</span>
+          </p>
+          <p>🏦 <strong>Cuenta IBAN Dólares:</strong>
+            <span class="copy-account" data-copy="CR08010200007036001302" tabindex="0">CR08010200007036001302</span>
+          </p>
+          <p>🏦 <strong>Cédula:</strong>
+            <span class="copy-account" data-copy="115170529" tabindex="0">115170529</span>
+          </p>
+          <p>📱 <strong>Sinpe Móvil al:</strong>
+            <span class="copy-account" data-copy="88172226" tabindex="0">88172226</span>
+          </p>
         </div>
       </div>
     </section>
 
-
+    <!-- Fotos -->
     <section id="photos" class="photos-section">
       <h2 data-i18n="photos">Fotos</h2>
       <div class="carousel-container">
@@ -185,22 +209,64 @@
           <img src="assets/images/photo4.jpg" alt="Foto 4" />
           <img src="assets/images/photo5.jpg" alt="Foto 5" />
           <img src="assets/images/photo6.jpg" alt="Foto 6" />
+          <img src="assets/images/photo7.jpg" alt="Foto 7" />
+          <img src="assets/images/photo8.jpg" alt="Foto 8" />
+          <img src="assets/images/photo9.jpg" alt="Foto 9" />
+          <img src="assets/images/photo10.jpg" alt="Foto 10" />
+          <img src="assets/images/photo11.jpg" alt="Foto 11" />
+          <img src="assets/images/photo12.jpg" alt="Foto 12" />
+          <img src="assets/images/photo13.jpg" alt="Foto 13" />
+          <img src="assets/images/photo14.jpg" alt="Foto 14" />
+          <img src="assets/images/photo15.jpg" alt="Foto 15" />
+          <img src="assets/images/photo16.jpg" alt="Foto 16" />
+          <img src="assets/images/photo17.jpg" alt="Foto 17" />
+          <img src="assets/images/photo18.jpg" alt="Foto 18" />
+          <img src="assets/images/photo19.jpg" alt="Foto 19" />
+          <img src="assets/images/photo20.jpg" alt="Foto 20" />
+          <img src="assets/images/photo21.jpg" alt="Foto 21" />
+          <img src="assets/images/photo22.jpg" alt="Foto 22" />
+          <img src="assets/images/photo23.jpg" alt="Foto 23" />
         </div>
         <button class="carousel-btn right" aria-label="Siguiente">▶</button>
       </div>
+       <div class="carousel-container vertical-carousel">
+        <button class="carousel-btn left vertical-btn" aria-label="Anterior">&#8592;</button>
+        <div class="carousel-track" id="vertical-carousel-track">
+          <img src="assets/images/vertical1.jpg" alt="Vertical 1" />
+          <img src="assets/images/vertical2.jpg" alt="Vertical 2" />
+          <img src="assets/images/vertical3.jpg" alt="Vertical 3" />
+          <img src="assets/images/vertical4.jpg" alt="Vertical 4" />
+          <img src="assets/images/vertical5.jpg" alt="Vertical 5" />
+          <img src="assets/images/vertical6.jpg" alt="Vertical 6" />
+          <img src="assets/images/vertical7.jpg" alt="Vertical 7" />
+          <img src="assets/images/vertical8.jpg" alt="Vertical 8" />
+          <img src="assets/images/vertical9.jpg" alt="Vertical 9" />
+          <img src="assets/images/vertical10.jpg" alt="Vertical 10" />
+          <img src="assets/images/vertical11.jpg" alt="Vertical 11" />
+          <img src="assets/images/vertical12.jpg" alt="Vertical 12" />
+          <img src="assets/images/vertical13.jpg" alt="Vertical 13" />
+          <img src="assets/images/vertical14.jpg" alt="Vertical 14" />
+          <img src="assets/images/vertical15.jpg" alt="Vertical 15" />
+          <img src="assets/images/vertical16.jpg" alt="Vertical 16" />
+          <img src="assets/images/vertical17.jpg" alt="Vertical 17" />
+          <img src="assets/images/vertical18.jpg" alt="Vertical 18" />  
+          <img src="assets/images/vertical19.jpg" alt="Vertical 19" />
+        </div>
+        <button class="carousel-btn right vertical-btn" aria-label="Siguiente">&#8594;</button>
+      </div>
     </section>
 
+    <!-- Gracias -->
     <section id="thankyou" class="thankyou-section">
-      <p data-i18n="thankyou" >Gracias por acompañarnos</p>
+      <p data-i18n="thankyou">Gracias por acompañarnos</p>
     </section>
 
   </main>
+
+  <!-- Scripts -->
   <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
   <script>
-    AOS.init({
-      duration: 800,
-      once: true
-    });
+    AOS.init({ duration: 800, once: true });
   </script>
 
 </body>

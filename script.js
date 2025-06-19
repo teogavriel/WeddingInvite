@@ -15,17 +15,32 @@ document.querySelectorAll('[data-i18n]').forEach(el => {
   }
 });
 
+const heroSection = document.getElementById('home');
 
-// Show/hide nav on scroll
 window.addEventListener('scroll', () => {
-  const current = window.pageYOffset || document.documentElement.scrollTop;
-
-  if (current > lastScrollTop) {
-    nav.classList.add('hidden'); // scrolling down
+  const nav = document.getElementById('main-nav');
+  const heroHeight = heroSection.offsetHeight;
+  if (window.scrollY > heroHeight - 60) { // 60px buffer for nav height
+    nav.classList.add('scrolled');
   } else {
-    nav.classList.remove('hidden'); // scrolling up
+    nav.classList.remove('scrolled');
   }
-  lastScrollTop = current <= 0 ? 0 : current;
+});
+// Show/hide nav on scroll
+
+// Show/hide nav on scroll SOLO en desktop
+window.addEventListener('scroll', () => {
+  if (window.innerWidth > 768) {
+    const st = window.pageYOffset || document.documentElement.scrollTop;
+    if (st > lastScrollTop && st > 80) {
+      nav.classList.add('hide-on-scroll');
+    } else {
+      nav.classList.remove('hide-on-scroll');
+    }
+    lastScrollTop = st <= 0 ? 0 : st;
+  } else {
+    nav.classList.remove('hide-on-scroll');
+  }
 });
 
 // Toggle mobile nav
@@ -33,6 +48,24 @@ toggleBtn.addEventListener('click', () => {
   nav.classList.toggle('active');
 });
 
+// Cierra el menú móvil al hacer clic fuera del menú o al hacer scroll hacia abajo
+if (window.matchMedia("(max-width: 768px)").matches) {
+  document.addEventListener('click', (e) => {
+    if (
+      nav.classList.contains('active') &&
+      !nav.contains(e.target) &&
+      e.target !== toggleBtn
+    ) {
+      nav.classList.remove('active');
+    }
+  });
+
+  window.addEventListener('scroll', () => {
+    if (nav.classList.contains('active')) {
+      nav.classList.remove('active');
+    }
+  });
+}
 
 // Close mobile menu when link is clicked
 document.querySelectorAll('#main-nav a').forEach(link => {
@@ -90,44 +123,6 @@ window.addEventListener('load', () => {
 setInterval(updateCountdown, 1000);
 updateCountdown();
 
-// .ics Calendar Download
-calendarBtn.addEventListener('click', () => {
-  const title = 'Boda de Jazmin & Teodosis';
-  const description = `¡Gracias por acompañarnos!\nSitio web: ${window.location.href}\nDirección: https://maps.app.goo.gl/wKgLEdw2CsjGVrft7`;
-  const location = 'Finca de eventos Los Higuerones, San Rafael de Heredia';
-  
-  // Date format: YYYYMMDDTHHmmssZ or local (without Z)
-  const start = '20250921T103000';
-  const end = '20250921T170000';
-
-  const icsContent = [
-    'BEGIN:VCALENDAR',
-    'VERSION:2.0',
-    'PRODID:-//Jazmin y Teodosis//Invitación Boda//ES',
-    'BEGIN:VEVENT',
-    `UID:${Date.now()}@jazminyteodosis.com`,
-    `DTSTAMP:${new Date().toISOString().replace(/[-:]/g, '').split('.')[0]}Z`,
-    `DTSTART;TZID=America/Costa_Rica:${start}`,
-    `DTEND;TZID=America/Costa_Rica:${end}`,
-    `SUMMARY:${title}`,
-    `DESCRIPTION:${description}`,
-    `LOCATION:${location}`,
-    'STATUS:CONFIRMED',
-    'END:VEVENT',
-    'END:VCALENDAR'
-  ].join('\r\n');
-
-  const blob = new Blob([icsContent], { type: 'text/calendar' });
-  const url = URL.createObjectURL(blob);
-
-  const link = document.createElement('a');
-  link.href = url;
-  link.download = 'boda-jazmin-teodosis.ics';
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
-  URL.revokeObjectURL(url);
-});
 
 const rsvpToggle = document.getElementById('rsvp-toggle');
 const rsvpFormContainer = document.getElementById('rsvp-form-container');
@@ -147,41 +142,31 @@ rsvpToggle.addEventListener('click', () => {
 });
 
 function renderRSVPForm() {
-  const nombre = urlParams.get('nombre');
-  const decodedName = nombre ? decodeURIComponent(nombre) : null;
-  const maxGuests = decodedName && guestCapacities[decodedName] || 0;
+  const formAction = "https://formspree.io/f/xeokzwoq"; // <-- replace with your real Formspree endpoint
 
-  let html = `<form id="rsvp-form">`;
+  const html = `
+    <form id="rsvp-form" action="${formAction}" method="POST">
+      <label for="fullname">Nombre completo:</label>
+      <input type="text" id="fullname" name="fullname" required>
 
-  if (!decodedName) {
-    html += `
-      <label for="name">Nombre completo:</label>
-      <input type="text" id="name" name="name" required>
-
-      <label for="diet">Restricciones alimenticias:</label>
-      <textarea id="diet" name="diet" rows="2"></textarea>
-
-      <label for="questions">Consultas:</label>
-      <textarea id="questions" name="questions" rows="2"></textarea>
-    `;
-  } else {
-    html += `
-      <p><strong>Hola ${decodedName}</strong>, esta invitación es válida para máximo ${maxGuests} persona(s)</p>
-
-      <label for="guests">Cantidad de invitados:</label>
-      <select id="guests" name="guests" required>
-        ${Array.from({ length: maxGuests }, (_, i) => `<option value="${i+1}">${i+1}</option>`).join('')}
-      </select>
+      <label for="confirm">Confirmo mi participación:</label>
+      <div class="slider-container">
+        <label class="switch">
+          <input type="checkbox" name="confirmed" id="confirm" value="Sí">
+          <span class="slider round"></span>
+        </label>
+      </div>
 
       <label for="diet">Restricciones alimenticias:</label>
-      <textarea id="diet" name="diet" rows="2"></textarea>
+      <textarea id="diet" name="diet" rows="2" placeholder="Ej. sin gluten, vegetariano, etc."></textarea>
 
-      <label for="questions">Consultas:</label>
-      <textarea id="questions" name="questions" rows="2"></textarea>
-    `;
-  }
+      <label for="notes">Notas o consultas:</label>
+      <textarea id="notes" name="notes" rows="2"></textarea>
 
-  html += `<button type="submit">Enviar</button></form>`;
+      <button type="submit">Enviar</button>
+    </form>
+  `;
+
   rsvpFormContainer.innerHTML = html;
 }
 
@@ -189,6 +174,27 @@ function renderRSVPForm() {
 const giftButton = document.getElementById('gift-button');
 const giftModal = document.getElementById('gift-modal');
 const closeModal = giftModal.querySelector('.close-modal');
+
+// Copy account number to clipboard on click
+document.querySelectorAll('.copy-account').forEach(el => {
+  el.addEventListener('click', () => {
+    const text = el.getAttribute('data-copy');
+    navigator.clipboard.writeText(text).then(() => {
+      el.classList.add('copied');
+      el.title = "¡Copiado!";
+      setTimeout(() => {
+        el.classList.remove('copied');
+        el.title = "";
+      }, 1200);
+    });
+  });
+  // Optional: allow keyboard copy (accessibility)
+  el.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      el.click();
+    }
+  });
+});
 
 giftButton.addEventListener('click', () => {
   giftModal.classList.remove('hidden');
@@ -208,17 +214,75 @@ giftModal.addEventListener('click', (e) => {
 const track = document.getElementById('carousel-track');
 const btnLeft = document.querySelector('.carousel-btn.left');
 const btnRight = document.querySelector('.carousel-btn.right');
+const images = track.querySelectorAll('img');
+let currentIndex = 0;
 
-btnLeft.addEventListener('click', () => {
-  track.scrollBy({ left: -300, behavior: 'smooth' });
-});
+function showImage(index) {
+  // Ensure index is within bounds (loop)
+  if (index < 0) {
+    currentIndex = images.length - 1;
+  } else if (index >= images.length) {
+    currentIndex = 0;
+  } else {
+    currentIndex = index;
+  }
+  const imgWidth = images[0].clientWidth;
+  track.scrollTo({ left: currentIndex * imgWidth, behavior: 'smooth' });
+}
 
-btnRight.addEventListener('click', () => {
-  track.scrollBy({ left: 300, behavior: 'smooth' });
-});
+btnLeft.addEventListener('click', () => showImage(currentIndex - 1));
+btnRight.addEventListener('click', () => showImage(currentIndex + 1));
 
-// Optional auto-scroll every 5 seconds
+// Optional: auto-scroll, now infinite
 setInterval(() => {
   if (document.hidden) return;
-  track.scrollBy({ left: 300, behavior: 'smooth' });
+  showImage(currentIndex + 1);
 }, 5000);
+
+// On resize, keep the current image centered
+window.addEventListener('resize', () => showImage(currentIndex));
+
+// Initialize position
+showImage(0);
+
+if (!window.AOS) {
+  document.body.classList.add('no-aos');
+}
+
+
+const verticalTrack = document.getElementById('vertical-carousel-track');
+const verticalBtnLeft = document.querySelector('.vertical-carousel .carousel-btn.left');
+const verticalBtnRight = document.querySelector('.vertical-carousel .carousel-btn.right');
+const verticalImages = verticalTrack.querySelectorAll('img');
+let verticalIndex = 0;
+
+function showVerticalImage(index) {
+  // Number of images visible at once
+  const visible = 2;
+  const maxIndex = verticalImages.length - visible;
+  if (index < 0) {
+    verticalIndex = maxIndex >= 0 ? maxIndex : 0;
+  } else if (index > maxIndex) {
+    verticalIndex = 0;
+  } else {
+    verticalIndex = index;
+  }
+  const imgWidth = verticalImages[0].clientWidth;
+  verticalTrack.scrollTo({ left: verticalIndex * imgWidth, behavior: 'smooth' });
+}
+
+verticalBtnLeft.addEventListener('click', () => showVerticalImage(verticalIndex - 1));
+verticalBtnRight.addEventListener('click', () => showVerticalImage(verticalIndex + 1));
+
+// Optional: auto-scroll for vertical carousel
+setInterval(() => {
+  if (document.hidden) return;
+  showVerticalImage(verticalIndex + 1);
+}, 6000);
+
+// On resize, keep the current vertical image centered
+window.addEventListener('resize', () => showVerticalImage(verticalIndex));
+
+// Initialize position
+showVerticalImage(0);
+
