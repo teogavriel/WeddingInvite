@@ -44,20 +44,6 @@ p {
 /* ================================
    Layout & Containers
 ================================== */
-body {
-  padding: 0rem;
-}
-
-main {
-  max-width: 960px;
-  margin: 0 auto;
-  padding-bottom: 4rem;
-}
-
-section {
-  padding: 3rem 1rem;
-  scroll-margin-top: 4rem; /* smooth scroll offset for sticky nav */
-}
 
 /* ================================
    Utility Classes
@@ -76,15 +62,17 @@ section {
   top: 0;
   left: 0;
   width: 100%;
-  background: rgba(255, 255, 255, 0.10); /* 90% transparente */
+  /*background: rgba(255, 255, 255, 0.10);  90% transparente */
+  background: #fff;
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
   padding: 0.5rem 1rem;
   box-shadow: none;
   z-index: 1001;
+  transform: translateY(0);
   transition: transform 0.3s ease-in-out, background 0.3s;
-  border-radius: 0 0 1.5rem 1.5rem;
   will-change: transform;
+  border-radius: 0;
 }
 
 #main-nav ul {
@@ -106,7 +94,7 @@ section {
 
 #main-nav a {
   text-decoration: none;
-  color: #fff; /* Ahora blanco */
+  color: #222; /* Ahora blanco */
   text-transform: uppercase;
   font-weight: 500;
   font-size: 0.9rem;
@@ -118,7 +106,6 @@ section {
 #main-nav a:focus {
   color: #ffd6fa; /* Un blanco suave al pasar el mouse */
 }
-
 
 
 /* ================================
@@ -149,9 +136,6 @@ section {
     overflow-y: auto;
   }
 
-  #main-nav.hide-on-scroll {
-    transform: none !important;
-  }
   #main-nav.active {
     display: block;
   }
@@ -192,22 +176,16 @@ section {
   }
 }
 
+
+/* On desktop, hide it by moving up exactly one nav-height */
 @media (min-width: 769px) {
   #main-nav.hide-on-scroll {
-    transform: translateY(-120%);
-    transition: transform 0.3s ease-in-out;
+    transform: translateY(-300%) !important;
+    transition: transform 0.3s cubic-bezier(.4,0,.2,1) !important;
     will-change: transform;
   }
 }
-
-#main-nav.scrolled a {
-  color: #222 !important;
-}
-#main-nav.scrolled a:hover,
-#main-nav.scrolled a:focus {
-  color: #35b4ea !important;
-}
-/* ================================
+/*===================
    Hero Section
 ================================== */
 .hero {
@@ -660,13 +638,7 @@ section {
   }
 }
 
-/* --- Opcional: Animación de entrada solo si usas AOS --- */
-[data-aos] {
-  opacity: 1 !important;
-  transform: none !important;
-  transition: none !important;
-}
-*/
+
 /* ================================
    Where Section
 ================================== */
@@ -1149,171 +1121,96 @@ input:checked + .slider.round::before {
 /* ================================
    Photos Section / Carousel
 ================================== */
-.photos-section {
+.photos-section.collage-section {
   background: #fff;
-  text-align: center;
-  padding: 4rem 1rem;
+  padding: 0 !important;
+  margin: 0 !important;
+  width: 100vw;
+  max-width: 100vw;
+  overflow-x: hidden;
 }
 
-.photos-section h2 {
-  font-size: 1.75rem;
-  color: #35b4ea;
-  margin-bottom: 2rem;
-}
-/* Carousel container styles */
-.carousel-container ,
-.vertical-carousel{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  max-width: 600px;
-  margin: 0 auto;
+.collage-carousel {
+  width: 100vw;
+  max-width: 100vw;
+  overflow-x: hidden;
   position: relative;
-  padding: 2rem 0;
-}
-
-/* Carousel track styles */
-.carousel-track,
-.vertical-carousel .carousel-track {
+  margin: 0;
+  padding: 0;
   display: flex;
-  transition: transform 0.5s cubic-bezier(.4,0,.2,1);
-  width: 100%;
-  overflow: hidden;
-  scroll-behavior: smooth;
+  align-items: stretch;
 }
 
-/* Show only one image at a time */
-.carousel-track img {
-  min-width: 100%;
-  max-width: 100%;
-  height: 380px;
-  object-fit: cover;
-  border-radius: 1.2rem;
-  box-shadow: 0 4px 18px rgba(42,110,189,0.10);
-  margin: 0;
-  transition: box-shadow 0.3s;
+.collage-track.dragging {
+  cursor: grabbing;
+  user-select: none;
 }
 
-/* Carousel buttons */
-.carousel-btn {
-  background: rgba(153, 40, 140, 0.8);
-  color: #fff;
-  border: none;
-  border-radius: 50%;
-  width: 44px;
-  height: 44px;
-  font-size: 1.5rem;
-  cursor: pointer;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 2;
-  transition: background 0.2s;
-}
-.carousel-btn.left {
-  left: -22px;
-}
-.carousel-btn.right {
-  right: -22px;
-}
-.carousel-btn:active {
-  background: #35b4ea;
-}
-
-
-/* Vertical Carousel Styles
-.vertical-carousel {
-  max-width: 350px;
-  margin: 0 auto;
-  position: relative;
-  padding: 2rem 0;
-}
-.vertical-carousel .carousel-track {
-  height: 500px;
-  min-width: 100%;
-  overflow: hidden;
+.collage-track {
+  cursor: grab;
   display: flex;
-  transition: transform 0.5s cubic-bezier(.4,0,.2,1);
+  gap: 0;
+  width: max-content;
 }
- */
-/* Horizontal carousel images */
-.carousel-track img {
-  min-width: 100%;
-  max-width: 100%;
-  height: 380px;
+
+.horizontal-collage .collage-track img {
+  height: 220px;
+  width: auto;
+  flex: 0 0 auto;
   object-fit: cover;
-  border-radius: 1.2rem;
-  box-shadow: 0 4px 18px rgba(42,110,189,0.10);
   margin: 0;
-  transition: box-shadow 0.3s;
+  border-radius: 0;
+  box-shadow: none;
+  display: block;
 }
 
-/* Vertical carousel images: 2 at a time, same width as horizontal */
-.vertical-carousel img {
-  min-width: 50%;
-  max-width: 50%;
-  height: 500px;
+.vertical-collage .collage-track img {
+  width: 160px;
+  height: 320px;
+  flex: 0 0 auto;
   object-fit: cover;
-  border-radius: 1.2rem;
-  box-shadow: 0 4px 18px rgba(42,110,189,0.10);
   margin: 0;
-  transition: box-shadow 0.3s;
+  border-radius: 0;
+  box-shadow: none;
+  display: block;
 }
 
-/* Carousel buttons (shared) */
-.carousel-btn {
-  background: #35b4ea;
-  color: #fff;
-  border: none;
-  border-radius: 50%;
-  width: 44px;
-  height: 44px;
-  font-size: 1.5rem;
-  cursor: pointer;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 2;
-  transition: background 0.2s;
-}
-.carousel-btn.left {
-  left: -22px;
-}
-.carousel-btn.right {
-  right: -22px;
-}
-.carousel-btn:active {
-  background: #35b4ea;
-}
 
+.horizontal-collage {
+  margin-bottom: 0;
+  border-bottom: 2px solid #fff;
+}
+.vertical-collage {
+  margin-top: 0;
+}
 
 @media (max-width: 700px) {
-  .carousel-container,
-  .vertical-carousel {
-    max-width: 98vw;
-    padding: 1rem 0;
+  .horizontal-collage .collage-track img {
+    height: 120px;
   }
-  .carousel-track img {
-    height: 220px;
-  }
-  .vertical-carousel img {
-    min-width: 100%;
-    max-width: 100%;
-    height: 640px;
-  }
-  .vertical-carousel .carousel-track {
-    height: 640px;
+  .vertical-collage .collage-track img {
+    width: 90px;
+    height: 180px;
   }
 }
 /* ================================
    Thank You Footer Section
 ================================== */
+
+/* Thank You Footer Section - full width, no margin below */
 .thankyou-section {
   background: #35b4ea;
   color: #fff;
   padding: 1rem 1rem;
   text-align: center;
+  width: 100vw;
+  margin: 0;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  border-radius: 0;
 }
 
 .thankyou-section p {
@@ -1384,5 +1281,12 @@ input:checked + .slider.round::before {
   right: 0 !important;
   margin: 0 !important;
   padding: 0 !important;
+}
+
+
+section:last-of-type,
+#thankyou {
+  padding-bottom: 0 !important;
+  margin-bottom: 0 !important;
 }
 

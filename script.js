@@ -1,7 +1,5 @@
-let lastScrollTop = 0;
 const nav = document.getElementById('main-nav');
 const toggleBtn = document.getElementById('menu-toggle');
-
 
 // Language detection
 const browserLang = navigator.language.startsWith('en') ? 'en' : 'es';
@@ -17,31 +15,28 @@ document.querySelectorAll('[data-i18n]').forEach(el => {
 
 const heroSection = document.getElementById('home');
 
-window.addEventListener('scroll', () => {
-  const nav = document.getElementById('main-nav');
-  const heroHeight = heroSection.offsetHeight;
-  if (window.scrollY > heroHeight - 60) { // 60px buffer for nav height
-    nav.classList.add('scrolled');
-  } else {
-    nav.classList.remove('scrolled');
-  }
-});
-// Show/hide nav on scroll
 
-// Show/hide nav on scroll SOLO en desktop
+// Show/hide nav on scroll (DESKTOP)
+let lastScrollY = window.pageYOffset;
 window.addEventListener('scroll', () => {
+  const currentScrollY = window.pageYOffset;
+  console.log('scroll:', curr, 'last:', lastScrollY);
   if (window.innerWidth > 768) {
-    const st = window.pageYOffset || document.documentElement.scrollTop;
-    if (st > lastScrollTop && st > 80) {
+    if (currentScrollY > lastScrollY) {
+      // Scrolling down
+      console.log('hiding nav');
       nav.classList.add('hide-on-scroll');
     } else {
+      // Scrolling up
+      nav.classList.remove('hide-on-scroll');
       nav.classList.remove('hide-on-scroll');
     }
-    lastScrollTop = st <= 0 ? 0 : st;
+    lastScrollY = currentScrollY;
   } else {
     nav.classList.remove('hide-on-scroll');
   }
 });
+
 
 // Toggle mobile nav
 toggleBtn.addEventListener('click', () => {
@@ -211,78 +206,108 @@ giftModal.addEventListener('click', (e) => {
 });
 
 
-const track = document.getElementById('carousel-track');
-const btnLeft = document.querySelector('.carousel-btn.left');
-const btnRight = document.querySelector('.carousel-btn.right');
-const images = track.querySelectorAll('img');
-let currentIndex = 0;
+function initCollageAutoScroll(carouselSelector, direction = 1, baseSpeed = 0.3, fastSpeed = 2) {
+  const carousel = document.querySelector(carouselSelector);
+  if (!carousel) return;
+  let speed = baseSpeed * direction;
+  let interval;
+  let isPaused = false;
+  let lastX = null;
+  let isTouching = false;
 
-function showImage(index) {
-  // Ensure index is within bounds (loop)
-  if (index < 0) {
-    currentIndex = images.length - 1;
-  } else if (index >= images.length) {
-    currentIndex = 0;
-  } else {
-    currentIndex = index;
+  function startAutoScroll() {
+    if (interval) clearInterval(interval);
+    interval = setInterval(() => {
+      if (!isPaused && !isTouching) {
+        carousel.scrollLeft += speed;
+        // Loop if at end
+        if (carousel.scrollLeft + carousel.clientWidth >= carousel.scrollWidth - 1) {
+          carousel.scrollLeft = 0;
+        }
+        if (carousel.scrollLeft <= 0 && speed < 0) {
+          carousel.scrollLeft = carousel.scrollWidth - carousel.clientWidth;
+        }
+      }
+    }, 16); // ~60fps
   }
-  const imgWidth = images[0].clientWidth;
-  track.scrollTo({ left: currentIndex * imgWidth, behavior: 'smooth' });
+
+  // Mouse movement for desktop
+  carousel.addEventListener('mousemove', (e) => {
+    const rect = carousel.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const third = rect.width / 3;
+    if (x < third) {
+      speed = -fastSpeed;
+      isPaused = false;
+    } else if (x > 2 * third) {
+      speed = fastSpeed;
+      isPaused = false;
+    } else {
+      isPaused = true;
+    }
+  });
+  carousel.addEventListener('mouseleave', () => {
+    speed = baseSpeed * direction;
+    isPaused = false;
+  });
+
+  // Touch events for mobile
+  carousel.addEventListener('touchstart', (e) => {
+    isTouching = true;
+    lastX = e.touches[0].clientX;
+  });
+  carousel.addEventListener('touchmove', (e) => {
+    if (lastX !== null) {
+      const dx = lastX - e.touches[0].clientX;
+      carousel.scrollLeft += dx;
+      lastX = e.touches[0].clientX;
+    }
+  });
+  carousel.addEventListener('touchend', () => {
+    isTouching = false;
+    lastX = null;
+  });
+
+  startAutoScroll();
 }
 
-btnLeft.addEventListener('click', () => showImage(currentIndex - 1));
-btnRight.addEventListener('click', () => showImage(currentIndex + 1));
+function enableDragScroll(carouselSelector) {
+  const carousel = document.querySelector(carouselSelector);
+  if (!carousel) return;
+  let isDown = false;
+  let startX;
+  let scrollLeft;
 
-// Optional: auto-scroll, now infinite
-setInterval(() => {
-  if (document.hidden) return;
-  showImage(currentIndex + 1);
-}, 5000);
-
-// On resize, keep the current image centered
-window.addEventListener('resize', () => showImage(currentIndex));
-
-// Initialize position
-showImage(0);
-
-if (!window.AOS) {
-  document.body.classList.add('no-aos');
+  carousel.addEventListener('mousedown', (e) => {
+    isDown = true;
+    carousel.classList.add('dragging');
+    startX = e.pageX - carousel.offsetLeft;
+    scrollLeft = carousel.scrollLeft;
+    e.preventDefault();
+  });
+  carousel.addEventListener('mouseleave', () => {
+    isDown = false;
+    carousel.classList.remove('dragging');
+  });
+  carousel.addEventListener('mouseup', () => {
+    isDown = false;
+    carousel.classList.remove('dragging');
+  });
+  carousel.addEventListener('mousemove', (e) => {
+    if (!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - carousel.offsetLeft;
+    const walk = (x - startX) * 1.2; // scroll-fast
+    carousel.scrollLeft = scrollLeft - walk;
+  });
 }
 
-
-const verticalTrack = document.getElementById('vertical-carousel-track');
-const verticalBtnLeft = document.querySelector('.vertical-carousel .carousel-btn.left');
-const verticalBtnRight = document.querySelector('.vertical-carousel .carousel-btn.right');
-const verticalImages = verticalTrack.querySelectorAll('img');
-let verticalIndex = 0;
-
-function showVerticalImage(index) {
-  // Number of images visible at once
-  const visible = 2;
-  const maxIndex = verticalImages.length - visible;
-  if (index < 0) {
-    verticalIndex = maxIndex >= 0 ? maxIndex : 0;
-  } else if (index > maxIndex) {
-    verticalIndex = 0;
-  } else {
-    verticalIndex = index;
-  }
-  const imgWidth = verticalImages[0].clientWidth;
-  verticalTrack.scrollTo({ left: verticalIndex * imgWidth, behavior: 'smooth' });
-}
-
-verticalBtnLeft.addEventListener('click', () => showVerticalImage(verticalIndex - 1));
-verticalBtnRight.addEventListener('click', () => showVerticalImage(verticalIndex + 1));
-
-// Optional: auto-scroll for vertical carousel
-setInterval(() => {
-  if (document.hidden) return;
-  showVerticalImage(verticalIndex + 1);
-}, 6000);
-
+// Initialize for both carousels (note the selector change!)
+initCollageAutoScroll('.horizontal-collage', 1, 0.3, 2);
+initCollageAutoScroll('.vertical-collage', 1, 0.3, 2);
+enableDragScroll('.horizontal-collage');
+enableDragScroll('.vertical-collage');
 // On resize, keep the current vertical image centered
-window.addEventListener('resize', () => showVerticalImage(verticalIndex));
+//window.addEventListener('resize', () => showVerticalImage(verticalIndex));
 
-// Initialize position
-showVerticalImage(0);
 

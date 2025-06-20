@@ -2,7 +2,7 @@
 const STRINGS = {
   es: {
     home_greeting_generic: "Nos casamos!",
-    rsvp_title: "Confirmar asistencia",
+    rsvp_title: "Para poder garantizarle un espacio a todos, por favor:",
     rsvp_button: "Confirmar asistencia",
     gifts_title: "Regalos",
     gifts_text: "Su presencia en nuestra boda será el mejor regalo. Pero si desean darnos otro obsequio, les agradeceremos que sea dinero para ayudarnos a pagar la luna de miel.",
@@ -11,12 +11,12 @@ const STRINGS = {
     where: "Dónde",
     dresscode: "Código de vestimenta",
     avoid_colors: "Evitar este color",
-    timeline: "Línea de tiempo",
+    timeline: "Nuestra historia",
     photos: "Fotos",
   },
   en: {
     home_greeting_generic: "We are getting married!",
-    rsvp_title: "RSVP",
+    rsvp_title: "Save your spot by confirming your attendance:",
     rsvp_button: "Confirm Attendance",
     gifts_title: "Gifts",
     gifts_text: "Your presence is the best gift. But if you'd like to give another, we’d be grateful for contributions to our honeymoon.",
