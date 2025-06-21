@@ -10,8 +10,8 @@
 }
 
 html, body {
-  height: 100%;
-  font-family: 'Avenir', sans-serif;
+  min-height: 100vh;
+  font-family: 'Montserrat', sans-serif;
   background-color: #ffffff;
   color: #222;
   -webkit-font-smoothing: antialiased;
@@ -32,7 +32,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-  font-family: 'Palace Script MT', cursive;
   font-size: 2.5rem;
 }
 
@@ -62,8 +61,7 @@ p {
   top: 0;
   left: 0;
   width: 100%;
-  /*background: rgba(255, 255, 255, 0.10);  90% transparente */
-  background: #fff;
+  background: rgba(130, 189, 201, 0.2); 
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
   padding: 0.5rem 1rem;
@@ -121,11 +119,12 @@ p {
     right: 0;
     left: auto;
     width: 50vw;
-    background: rgba(255, 255, 255, 0.18);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    margin-right: 1rem;
+    background: rgba(255, 255, 255, 0.10);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
     padding: 0.5rem 1rem 1.5rem 1rem;
-    box-shadow: -2px 0 8px rgba(0,0,0,0.08);
+    box-shadow: -2px 0 5px rgba(0,0,0,0.08);
     z-index: 2000;
     transition: transform 0.3s ease-in-out;
     border-radius: 0 0 0 1.5rem;
@@ -157,9 +156,13 @@ p {
     justify-content: flex-end;
   }
 
+  #main-nav li:last-child {
+    margin-right: 0;
+  }
+
   #main-nav a {
     font-size: 0.95rem;
-    color: #fff !important;
+    color: #222 !important;
     text-align: right;
     text-decoration: none;
     font-weight: 500;
@@ -169,8 +172,8 @@ p {
     max-width: 100%;
     word-break: normal;
     white-space: nowrap;
-    overflow: hidden;
-    text-overflow: unset;
+    /*overflow: hidden;
+    text-overflow: unset;*/
     display: block;
     padding-right: 0;
   }
@@ -180,7 +183,7 @@ p {
 /* On desktop, hide it by moving up exactly one nav-height */
 @media (min-width: 769px) {
   #main-nav.hide-on-scroll {
-    transform: translateY(-300%) !important;
+    transform: translateY(-100%) !important;
     transition: transform 0.3s cubic-bezier(.4,0,.2,1) !important;
     will-change: transform;
   }
@@ -354,7 +357,6 @@ p {
 }
 
 .hero-greeting {
-  font-family: 'Avenir', sans-serif;
   font-size: 2rem; /* Igual que .hero-date y .countdown */
   font-weight: 400;
   font-style: normal;
@@ -364,10 +366,10 @@ p {
 }
 
 .hero-title {
-  font-family: 'Ephesis', cursive, sans-serif;
+  font-family: 'Ephesis', cursive;
   font-size: 9rem;      /* Mucho más grande en escritorio */
   font-weight: 400;
-  font-style: italic;
+  font-style: normal;
   margin-bottom: 0.2rem;
   color: #fff;
   letter-spacing: 1.5px;
@@ -376,7 +378,6 @@ p {
 .hero-date,
 #countdown {
   font-size: 2rem;
-  font-family: 'Avenir', sans-serif;
   color: #fff;
   margin-bottom: 0.3rem;
   font-weight: 400;
@@ -526,9 +527,9 @@ p {
   background: #fff;
   border: 2px solid #2a6ebd;
   border-radius: 1rem;
-  padding: 1.1rem 1.7rem;
-  min-width: 350px;
-  max-width: 420px;
+  padding: 1.1rem 2.5rem; /* más padding horizontal */
+  min-width: 500px;       /* antes 350px */
+  max-width: 600px;       /* antes 420px */
   text-align: right;
   box-shadow: 0 2px 8px rgba(42,110,189,0.08);
   z-index: 3;
@@ -542,22 +543,20 @@ p {
   background: #fff;
   border: 2px solid #2a6ebd;
   border-radius: 1rem;
-  padding: 1.1rem 1.7rem;
-  min-width: 350px;
-  max-width: 420px;
+  padding: 1.1rem 2.5rem; /* más padding horizontal */
+  min-width: 500px;       /* antes 350px */
+  max-width: 600px;       /* antes 420px */
   text-align: left;
   box-shadow: 0 2px 8px rgba(42,110,189,0.08);
   z-index: 3;
 }
 
-/* --- FIN: Rectángulo centrado --- */
-.timeline-item.end {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  z-index: 2;
-  margin-top: 3.5rem;
+/* Rectángulo inicio y fin */
+.timeline-item.start .timeline-content,
+.timeline-item.end .timeline-content {
+  min-width: 420px;   /* antes 320px */
+  max-width: 700px;   /* antes 520px */
+  padding: 1.2rem 2.5rem;
 }
 
 .timeline-item.end .timeline-content {
@@ -572,6 +571,12 @@ p {
   box-shadow: 0 2px 8px rgba(42,110,189,0.08);
   position: relative;
   z-index: 2;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  text-align: center;
+  display: block;
+  margin-top: 4rem;
 }
 
 .timeline-item.end .timeline-img {
@@ -1199,23 +1204,21 @@ input:checked + .slider.round::before {
 
 /* Thank You Footer Section - full width, no margin below */
 .thankyou-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
   background: #35b4ea;
   color: #fff;
-  padding: 1rem 1rem;
-  text-align: center;
+  padding: 1.5rem 1rem;
   width: 100vw;
   margin: 0;
-  position: relative;
-  left: 50%;
-  right: 50%;
-  margin-left: -50vw;
-  margin-right: -50vw;
   border-radius: 0;
 }
 
 .thankyou-section p {
-  font-size: 3.5rem;
-  font-family: 'Palace Script MT', cursive;
+  font-size: 3rem;
   margin: 0;
   letter-spacing: 1.5px;
   line-height: 1.4;
@@ -1226,19 +1229,20 @@ input:checked + .slider.round::before {
   .hero-background {
     background-image: url('assets/images/hero-mobile.jpg') !important;
     background-position: center right;
-    background-size: cover;
+    background-size: cover; 
   }
-  @media (max-width: 600px) {
+  .thankyou-section {
+    padding: 1.2rem 0.5rem;
+  }
   .thankyou-section p {
-    font-size: 2rem;
-    white-space: nowrap;
+    font-size: 1.3rem;
   }
-}
 }
 
 /* Botón hamburguesa: solo las 3 líneas, fondo transparente, esquina superior derecha */
 #menu-toggle {
   display: none;
+  
 }
 
 @media (max-width: 768px) {
@@ -1254,7 +1258,7 @@ input:checked + .slider.round::before {
     padding: 0.5rem;
     font-size: 2.2rem;
     border-radius: 50%;
-    color: #fff;
+    color: #222 !important;
     box-shadow: none;
     align-items: center;
     justify-content: center;

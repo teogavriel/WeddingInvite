@@ -3,11 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Boda de Jazmin & Teodosis</title>
+  <title>Jazmin & Teodosis</title>
   <link rel="stylesheet" href="style.css" />
-  <script src="docs/strings.js"></script>
+
   
-  <link href="https://fonts.googleapis.com/css2?family=Ephesis&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Ephesis&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -17,13 +19,13 @@
   <!-- Navegación -->
   <nav id="main-nav">
     <ul>
-      <li><a href="#home">Inicio</a></li>
-      <li><a href="#timeline">Línea de tiempo</a></li>
-      <li><a href="#where">Dónde</a></li>
-      <li><a href="#dresscode">Vestimenta</a></li>
-      <li><a href="#rsvp">Confirmar</a></li>
-      <li><a href="#gifts">Regalos</a></li>
-      <li><a href="#photos">Fotos</a></li>
+      <li><a href="#home" data-i18n="menu_home">Inicio</a></li>
+      <li><a href="#timeline" data-i18n="menu_timeline">Línea de tiempo</a></li>
+      <li><a href="#where" data-i18n="menu_where">Dónde</a></li>
+      <li><a href="#dresscode" data-i18n="menu_dresscode">Vestimenta</a></li>
+      <li><a href="#rsvp" data-i18n="menu_rsvp">Confirmar</a></li>
+      <li><a href="#gifts" data-i18n="menu_gifts">Regalos</a></li>
+      <li><a href="#photos" data-i18n="menu_photos">Fotos</a></li>
     </ul>
   </nav>
 
@@ -33,7 +35,7 @@
     <div class="hero-content">
       <p id="greeting" data-i18n="home_greeting_generic" class="hero-greeting">¡Nos casamos!</p>
       <h1 class="hero-title">Jazmin &<br> Teodosis</h1>
-      <div class="hero-date">21 septiembre 2025</div>
+      <div class="hero-date" data-i18n="hero_date">21 septiembre 2025</div>
       <div class="hero-date">10:30am</div>
       <div id="countdown" class="countdown">000d 00h 00m 00s</div>
       <!--button id="add-to-calendar" class="calendar-btn" data-tooltip="Agregar al calendario" aria-label="Agregar al calendario">📅</button-->
@@ -52,7 +54,7 @@
           <div class="timeline-img" style="background: transparent; border: none; box-shadow: none;"></div>
           <div class="timeline-content timeline-content-center">
             <h3>2015</h3>
-            <p>Aquí se cruzaron nuestras vidas por primera vez, este año da comienzo a una amistad que durará por siempre</p>
+            <p data-i18n="timeline_2015_text">Ese año el destino hizo lo suyo: nos conocimos sin saber que estábamos sembrando el inicio de una amistad que sería para toda la vida.</p>
           </div>
         </div>
 
@@ -60,7 +62,7 @@
           <div class="timeline-img" style="background-image: url('assets/images/2017.jpg');"></div>
           <div class="timeline-content" >
             <h3>2017</h3>
-            <p>Iniciamos nuestra relación como novios, andabamos bien pegas por todo lado</p>
+            <p data-i18n="timeline_2017_text">Lo que muchos ya sospechaban se volvió oficial: nos convertimos en novios. Desde entonces, caminar juntos se volvió nuestra forma favorita de vivir.</p>
           </div>
         </div>
 
@@ -68,7 +70,7 @@
           <div class="timeline-img" style="background-image: url('assets/images/2018.jpg');"></div>
           <div class="timeline-content">
             <h3>2018</h3>
-            <p>Decidimos aventurarnos a vivir juntos</p>
+            <p data-i18n="timeline_2018_text">Dimos un paso importante y comenzamos a convivir. Entre desafíos, aprendizajes y mucho amor, construimos un hogar que hoy nos llena de orgullo.</p>
           </div>
         </div>
 
@@ -76,7 +78,7 @@
           <div class="timeline-img" style="background-image: url('assets/images/2020a.jpg');"></div>
           <div class="timeline-content">
             <h3>2020</h3>
-            <p>Nuestra gata Kathy nos eligió como su familia</p>
+            <p data-i18n="timeline_2020a_text">Kathy llegó de forma inesperada a nuestras vidas… o mejor dicho, nos eligió como su familia. Y desde entonces, nada volvió a ser igual.</p>
           </div>
         </div>
 
@@ -84,7 +86,7 @@
           <div class="timeline-img" style="background-image: url('assets/images/2020b.jpg');"></div>
           <div class="timeline-content">
             <h3>2020</h3>
-            <p>Fuimos a buscar adoptar un gato para que acompañara a Kathy, Hestia nos eligió es demasiado chineada con nosotros, pero no se lleva con Kathy</p>
+            <p data-i18n="timeline_2020b_text">Buscando una compañera para Kathy, apareció Hestia: la chineada de la casa. Su relación con Kathy aún es compleja, pero con el tiempo hemos aprendido que el amor también se construye entre maullidos.</p>
           </div>
         </div>
 
@@ -92,7 +94,7 @@
           <div class="timeline-img" style="background-image: url('assets/images/2022.jpg');"></div>
           <div class="timeline-content">
             <h3>2022</h3>
-            <p>Hicimos nuestro primer viaje al extranjero y decidimos comprometernos en el lugar más cliché del mundo, frente a la Torre Eiffel</p>
+            <p data-i18n="timeline_2022_text">Cumplimos uno de nuestros grandes sueños: viajar juntos al extranjero. Y en medio de la magia de París, frente a la Torre Eiffel, nos comprometimos.</p>
           </div>
         </div>
 
@@ -100,7 +102,7 @@
           <div class="timeline-img" style="background-image: url('assets/images/2024.jpg');"></div>
           <div class="timeline-content">
             <h3>2024</h3>
-            <p>Mientras le haciamos casa cuna a unos lindos gatitos rescatadas, el pequeño Ares nos robó el corazón </p>
+            <p data-i18n="timeline_2024_text">Nuestra casa se convirtió en refugio temporal para gatitos rescatados. Pero Ares decidió quedarse para siempre. Kathy y Hestia aún lo están procesando… pero ahí vamos, paso a paso, como familia.</p>
           </div>
         </div>
 
@@ -108,7 +110,7 @@
           <div class="timeline-img" style="background: transparent; border: none; box-shadow: none;"></div>
           <div class="timeline-content timeline-content-center">
             <h3>2025</h3>
-            <p>Este año por fin diremos: "¡Sí acepto!" con la compañía de todos ustedes</p>
+            <p data-i18n="timeline_2025_text">Este año celebramos el amor que hemos construido paso a paso, con paciencia, risas y mucho cariño. ¡Nos casamos! Y queremos compartir este momento tan especial con quienes han sido parte de nuestra historia.</p>
           </div>
         </div>
 
@@ -144,7 +146,7 @@
         <div class="dresscode-info-col">
           <h2 data-i18n="dresscode">Código de vestimenta</h2>
           <div class="dresscode-labels">
-            <span class="tooltip-label" data-tooltip="Vestimenta elegante: trajes completos, vestidos largos o cóctel.">Formal</span>
+            <span class="tooltip-label" data-i18n="dresscode_formal" data-tooltip="Vestimenta elegante: trajes completos, vestidos largos o cóctel.">Formal</span>
             <span class="tooltip-label" data-tooltip="Vestimenta cuidada: camisas, blusas, pantalones de vestir, vestidos simples.">Semiformal</span>
           </div>
           <h3 data-i18n="avoid_colors">Evitar este color</h3>
@@ -210,11 +212,11 @@
           <img src="assets/images/photo4.jpg" alt="Foto 4" />
           <img src="assets/images/photo5.jpg" alt="Foto 5" />
           <img src="assets/images/photo6.jpg" alt="Foto 6" />
-          <img src="assets/images/photo7.jpg" alt="Foto 7" />
+         <!-- <img src="assets/images/photo7.jpg" alt="Foto 7" />-->
           <img src="assets/images/photo8.jpg" alt="Foto 8" />
-          <img src="assets/images/photo9.jpg" alt="Foto 9" />
+         <!-- <img src="assets/images/photo9.jpg" alt="Foto 9" />-->
           <img src="assets/images/photo10.jpg" alt="Foto 10" />
-          <img src="assets/images/photo11.jpg" alt="Foto 11" />
+         <!-- <img src="assets/images/photo11.jpg" alt="Foto 11" />-->
           <img src="assets/images/photo12.jpg" alt="Foto 12" />
           <img src="assets/images/photo13.jpg" alt="Foto 13" />
           <img src="assets/images/photo14.jpg" alt="Foto 14" />
@@ -244,7 +246,7 @@
           <img src="assets/images/vertical9.jpg" alt="Vertical 9" />
           <img src="assets/images/vertical10.jpg" alt="Vertical 10" />
           <img src="assets/images/vertical11.jpg" alt="Vertical 11" />
-          <img src="assets/images/vertical12.jpg" alt="Vertical 12" />
+          <!-- <img src="assets/images/vertical12.jpg" alt="Vertical 12" />-->
           <img src="assets/images/vertical13.jpg" alt="Vertical 13" />
           <img src="assets/images/vertical14.jpg" alt="Vertical 14" />
           <img src="assets/images/vertical15.jpg" alt="Vertical 15" />
@@ -265,8 +267,8 @@
 
   </main>
 
-
-  <script defer src="script.js"></script>
+  <script src="docs/strings.js"></script>
+  <script src="script.js"></script>
 </body>
 
 </html>

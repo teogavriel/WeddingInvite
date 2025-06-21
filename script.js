@@ -1,42 +1,84 @@
-const nav = document.getElementById('main-nav');
-const toggleBtn = document.getElementById('menu-toggle');
+document.addEventListener('DOMContentLoaded', () => {
 
-// Language detection
-const browserLang = navigator.language.startsWith('en') ? 'en' : 'es';
-const i18n = STRINGS[browserLang];
+  const nav = document.getElementById('main-nav');
+  
+  // ...all your code that uses nav, toggleBtn, etc...
 
-// Replace i18n text in DOM
-document.querySelectorAll('[data-i18n]').forEach(el => {
-  const key = el.getAttribute('data-i18n');
-  if (i18n[key]) {
-    el.textContent = i18n[key];
-  }
-});
-
-const heroSection = document.getElementById('home');
+  // Show/hide nav on scroll (DESKTOP)
 
 
-// Show/hide nav on scroll (DESKTOP)
-let lastScrollY = window.pageYOffset;
-window.addEventListener('scroll', () => {
-  const currentScrollY = window.pageYOffset;
-  console.log('scroll:', curr, 'last:', lastScrollY);
-  if (window.innerWidth > 768) {
-    if (currentScrollY > lastScrollY) {
-      // Scrolling down
-      console.log('hiding nav');
-      nav.classList.add('hide-on-scroll');
+  let lastScrollY = window.pageYOffset;
+  window.addEventListener('scroll', () => {
+    const currentScrollY = window.pageYOffset;
+    // Desktop: hide nav on scroll down, show on scroll up
+    if (window.innerWidth > 768) {
+      if (currentScrollY > lastScrollY) {
+        nav.classList.add('hide-on-scroll');
+      } else {
+        nav.classList.remove('hide-on-scroll');
+      }
+      lastScrollY = currentScrollY;
     } else {
-      // Scrolling up
-      nav.classList.remove('hide-on-scroll');
-      nav.classList.remove('hide-on-scroll');
+      // Mobile: close menu if open, but don't touch hide-on-scroll
+      if (nav.classList.contains('active')) {
+        nav.classList.remove('active');
+      }
     }
-    lastScrollY = currentScrollY;
-  } else {
-    nav.classList.remove('hide-on-scroll');
-  }
+  });
+
+  // Language detection
+  const browserLang = navigator.language.startsWith('en') ? 'en' : 'es';
+  const i18n = STRINGS[browserLang];
+
+  // Replace i18n text in DOM
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (i18n[key]) {
+      el.textContent = i18n[key];
+    }
+
+    // For placeholders
+    if (el.hasAttribute('data-i18n-placeholder')) {
+      const phKey = el.getAttribute('data-i18n-placeholder');
+      if (i18n[phKey]) {
+        el.setAttribute('placeholder', i18n[phKey]);
+      }
+    }
+    // For tooltips
+    if (el.hasAttribute('data-tooltip')) {
+      const tipKey = el.getAttribute('data-i18n-tooltip');
+      if (tipKey && i18n[tipKey]) {
+        el.setAttribute('data-tooltip', i18n[tipKey]);
+      }
+    }
+
+
+  });
+
+  const heroSection = document.getElementById('home');
+
+
+
+
+
+// Smooth scroll for menu links
+document.querySelectorAll('#main-nav a[href^="#"]').forEach(link => {
+  link.addEventListener('click', function(e) {
+    const targetId = this.getAttribute('href').slice(1);
+    const target = document.getElementById(targetId);
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth' });
+      // Optionally close mobile menu
+      if (nav.classList.contains('active')) {
+        nav.classList.remove('active');
+      }
+    }
+  });
 });
 
+
+const toggleBtn = document.getElementById('menu-toggle');
 
 // Toggle mobile nav
 toggleBtn.addEventListener('click', () => {
@@ -311,3 +353,5 @@ enableDragScroll('.vertical-collage');
 //window.addEventListener('resize', () => showVerticalImage(verticalIndex));
 
 
+  // ...rest of your code...
+});
