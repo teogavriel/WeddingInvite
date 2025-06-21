@@ -529,10 +529,12 @@ p {
   border-radius: 1rem;
   padding: 1.1rem 2.5rem; /* más padding horizontal */
   min-width: 500px;       /* antes 350px */
-  max-width: 600px;       /* antes 420px */
+  max-width: calc(50vw - 90px);       /* antes 420px */
   text-align: right;
   box-shadow: 0 2px 8px rgba(42,110,189,0.08);
   z-index: 3;
+  box-sizing: border-box;
+  word-break: break-word;
 }
 
 /* Rectángulo derecho */
@@ -545,10 +547,12 @@ p {
   border-radius: 1rem;
   padding: 1.1rem 2.5rem; /* más padding horizontal */
   min-width: 500px;       /* antes 350px */
-  max-width: 600px;       /* antes 420px */
+  max-width: calc(50vw - 90px);      /* antes 420px */
   text-align: left;
   box-shadow: 0 2px 8px rgba(42,110,189,0.08);
   z-index: 3;
+  box-sizing: border-box;
+  word-break: break-word;
 }
 
 /* Rectángulo inicio y fin */
@@ -583,14 +587,23 @@ p {
   display: none;
 }
 
+@media (max-width: 1100px) {
+  .timeline-item.left .timeline-content,
+  .timeline-item.right .timeline-content {
+    max-width: calc(45vw - 40px);
+    min-width: 200px;
+  }
+}
+
 /* --- Responsive: Móvil --- */
 @media (max-width: 900px) {
   .timeline {
     padding-left: 0;
     padding-right: 0;
   }
+
   .timeline::before {
-    left: 30px;
+    left: 35px;
     transform: none;
     width: 3px;
     top: 60px;
@@ -602,7 +615,7 @@ p {
   }
   .timeline-img {
     position: absolute;
-    left: 30px;
+    left: 38px;
     top: 0;
     transform: translateX(-50%);
     width: 70px;
@@ -620,7 +633,7 @@ p {
     /* Reduce left margin, add right margin for spacing */
     margin: 0 1rem 0 80px; /* left: 80px (closer to circle), right: 1rem */
     min-width: 0;
-    max-width: calc(100% - 90px); /* leave a little space on the right */
+    max-width: calc(100vw - 120px);/* leave a little space on the right */
     width: auto;
     text-align: left;
     padding: 1rem 1.1rem;
@@ -632,7 +645,7 @@ p {
   .timeline-item.start .timeline-content,
   .timeline-item.end .timeline-content {
     margin: 0 1rem 0 30px; /* left: 30px aligns with the line, right: 1rem for spacing */
-    max-width: calc(100% - 40px); /* 30px left + 10px right */
+    max-width: calc(100vw - 100px);/* 30px left + 10px right */
     min-width: 0;
     width: auto;
     text-align: left;
@@ -1265,14 +1278,15 @@ input:checked + .slider.round::before {
     cursor: pointer;
     transition: background 0.2s;
   }
+  /*
   #menu-toggle:focus {
     outline: 2px solid #fff;
     background: rgba(0,0,0,0.08);
   }
-  /* Oculta el borde y fondo al pasar el mouse */
+   Oculta el borde y fondo al pasar el mouse 
   #menu-toggle:hover {
     background: rgba(255,255,255,0.08);
-  }
+  }*/
   /* Si usas un icono SVG, puedes ajustar aquí */
 }
 
