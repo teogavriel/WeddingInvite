@@ -16,7 +16,7 @@ const STRINGS = {
     hero_time: "10:30am",
 
     // Timeline
-    timeline: "Línea de tiempo",
+    timeline: "Nuestra historia",
     timeline_2015_text: "Ese año el destino hizo lo suyo: nos conocimos sin saber que estábamos sembrando el inicio de una amistad que sería para toda la vida.",
     timeline_2017_text: "Lo que muchos ya sospechaban se volvió oficial: nos convertimos en novios. Desde entonces, caminar juntos se volvió nuestra forma favorita de vivir.",
     timeline_2018_text: "Dimos un paso importante y comenzamos a convivir. Entre desafíos, aprendizajes y mucho amor, construimos un hogar que hoy nos llena de orgullo.",
@@ -39,13 +39,13 @@ const STRINGS = {
     dresscode_formal_tip: "Vestimenta elegante: trajes completos, vestidos largos o cóctel.",
     dresscode_semiformal: "Semiformal",
     dresscode_semiformal_tip: "Vestimenta cuidada: camisas, blusas, pantalones de vestir, vestidos simples.",
-    avoid_colors: "Evitar este color",
+    avoid_colors: "No utilizar estos colores:",
     color_white: "Blanco",
     color_olive: "Verde olivo (#a8b99f)",
     color_blue: "Celeste (#98a4b0)",
 
     // RSVP
-    rsvp_title: "Para poder garantizarle un espacio a todos, por favor:",
+    rsvp_title: "Para poder garantizarle un espacio a todos, por favor",
     rsvp_button: "Confirmar asistencia",
     rsvp_fullname: "Nombre completo:",
     rsvp_confirm: "Confirmo mi participación:",

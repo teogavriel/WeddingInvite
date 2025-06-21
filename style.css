@@ -1259,21 +1259,19 @@ input:checked + .slider.round::before {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start; /* <-- was center */
   text-align: center;
   background: #35b4ea;
   color: #fff;
-  padding: 1.5rem 1rem;
+  padding: 1.5rem 1rem 3rem 1rem;
   width: 100vw;
+  min-height: unset; /* or remove min-height if set */
   margin: 0;
   border-radius: 0;
 }
 
 .thankyou-section p {
-  font-size: 3rem;
-  margin: 0;
-  letter-spacing: 1.5px;
-  line-height: 1.4;
+  font-size: 2rem;
 }
 
 /* Hero background para móvil: usa imagen hero-mobile.jpg */
