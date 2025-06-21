@@ -27,6 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   const audio = document.getElementById('bg-music');
+  audio.currentTime += 2;
   const muteBtn = document.getElementById('mute-btn');
 
   // Start muted for autoplay policy
