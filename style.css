@@ -422,13 +422,42 @@ p {
   position: fixed;
   bottom: 1.5rem;
   right: 1.5rem;
-  background: transparent;
+  left: auto;
+  top: auto;
   border: none;
-  font-size: 1.5rem;
+  font-size: 2.2rem;
   cursor: pointer;
-  z-index: 3001; /* above nav */
+  z-index: 3001;
+  border-radius: 50%;
+  padding: 0.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+  color: #222;
 }
 
+.mute-btn:focus {
+  outline: 2px solid #35b4ea;
+}
+
+@media (max-width: 700px) {
+  .mute-btn {
+    font-size: 2.5rem;
+    padding: 0.7rem;
+    bottom: 1rem;
+    right: 1rem;
+    background: rgba(255,255,255,0.85);
+  }
+}
+
+@media (min-width: 701px) {
+  .mute-btn {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+}
 /* ================================
    Timeline Section (Rediseñado)
 ================================== */
