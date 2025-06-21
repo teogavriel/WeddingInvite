@@ -26,6 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+
   // Language detection
   const browserLang = navigator.language.startsWith('en') ? 'en' : 'es';
   const i18n = STRINGS[browserLang];
@@ -183,10 +184,10 @@ function renderRSVPForm() {
 
   const html = `
     <form id="rsvp-form" action="${formAction}" method="POST">
-      <label for="fullname">Nombre completo:</label>
+      <label for="fullname" data-i18n="rsvp_fullname">${i18n.rsvp_fullname}</label>
       <input type="text" id="fullname" name="fullname" required>
 
-      <label for="confirm">Confirmo mi participación:</label>
+      <label for="confirm" data-i18n="rsvp_confirm">${i18n.rsvp_confirm}</label>
       <div class="slider-container">
         <label class="switch">
           <input type="checkbox" name="confirmed" id="confirm" value="Sí">
@@ -194,13 +195,13 @@ function renderRSVPForm() {
         </label>
       </div>
 
-      <label for="diet">Restricciones alimenticias:</label>
-      <textarea id="diet" name="diet" rows="2" placeholder="Ej. sin gluten, vegetariano, etc."></textarea>
+      <label for="diet" data-i18n="rsvp_diet">${i18n.rsvp_diet}</label>
+      <textarea id="diet" name="diet" rows="2" placeholder="${i18n.rsvp_diet_placeholder}"></textarea>
 
-      <label for="notes">Notas o consultas:</label>
+      <label for="notes" data-i18n="rsvp_notes">${i18n.rsvp_notes}</label>
       <textarea id="notes" name="notes" rows="2"></textarea>
 
-      <button type="submit">Enviar</button>
+      <button type="submit" data-i18n="rsvp_submit">${i18n.rsvp_submit}</button>
     </form>
   `;
 
