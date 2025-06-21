@@ -417,7 +417,17 @@ p {
   }
 }
 
-
+/*-----Music-----*/
+.mute-btn {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  z-index: 3001; /* above nav */
+}
 
 /* ================================
    Timeline Section (Rediseñado)

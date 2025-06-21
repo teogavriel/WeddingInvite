@@ -5,17 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Jazmin & Teodosis</title>
   <link rel="stylesheet" href="style.css" />
-
+  <link rel="icon" type="image/svg+xml" href="assets/icons/wedding.svg">
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Ephesis&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
-
+  
   <!-- Botón Hamburguesa -->
   <button id="menu-toggle" aria-label="Abrir menú">&#9776;</button>
-
+  <!-- Background music -->
+  <audio id="bg-music" src="assets/music/sake-binks.mp3" loop autoplay></audio>
+  <!-- Mute/unmute button -->
+  <button id="mute-btn" class="mute-btn" aria-label="Mute audio">🔊</button>
   <!-- Navegación -->
   <nav id="main-nav">
     <ul>
@@ -44,7 +47,7 @@
 
   <!-- CONTENIDO PRINCIPAL -->
   <main>
-
+    
     <!-- Timeline -->
     <section id="timeline" class="timeline-section">
       <h2 data-i18n="timeline">Línea de tiempo</h2>

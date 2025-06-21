@@ -26,6 +26,32 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  const audio = document.getElementById('bg-music');
+  const muteBtn = document.getElementById('mute-btn');
+
+  // Start muted for autoplay policy
+  audio.muted = true;
+  audio.volume = 0.5;
+
+  // Try to play (may be blocked)
+  audio.play().catch(() => {});
+
+  // On first user interaction, unmute and play
+  function enableAudio() {
+    audio.muted = false;
+    audio.play();
+    muteBtn.textContent = '🔊';
+    document.removeEventListener('click', enableAudio);
+  }
+  document.addEventListener('click', enableAudio);
+
+  // Mute/unmute toggle
+  muteBtn.addEventListener('click', (e) => {
+    e.stopPropagation(); // Prevents this click from also triggering enableAudio
+    audio.muted = !audio.muted;
+    muteBtn.textContent = audio.muted ? '🔇' : '🔊';
+    muteBtn.setAttribute('aria-label', audio.muted ? 'Unmute audio' : 'Mute audio');
+  });
 
   // Language detection
   const browserLang = navigator.language.startsWith('en') ? 'en' : 'es';
