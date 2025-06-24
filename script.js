@@ -428,10 +428,16 @@ if (browserLang === 'en') {
     }
     .lang-popup-content {
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
       gap: 0.7rem;
       align-items: center;
       justify-content: center;
+    }
+    @media (max-width: 600px) {
+      .lang-popup-content {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
     }
     .lang-popup-content button {
       margin: 0 0.3rem;
@@ -508,3 +514,4 @@ function updateLanguage(lang) {
 // window.updateLanguage = updateLanguage;
 
 // ...rest of your code...
+
