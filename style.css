@@ -540,6 +540,7 @@ p {
   margin-bottom: 4.5rem;
 }
 
+
 /* Círculo con imagen sobre la línea */
 .timeline-img {
   position: absolute;
@@ -624,6 +625,19 @@ p {
 
 .timeline-item.end .timeline-img {
   display: none;
+}
+
+.timeline-item.end::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 100%;
+  width: 24px; /* slightly wider than the line */
+  height: 60px; /* enough to cover the remaining line */
+  background: #fff; /* match your page background */
+  z-index: 3;
+  pointer-events: none;
 }
 
 @media (max-width: 1100px) {

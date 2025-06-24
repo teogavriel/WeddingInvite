@@ -112,7 +112,7 @@ const STRINGS = {
     dresscode_formal_tip: "Elegant attire: full suits, long or cocktail dresses.",
     dresscode_semiformal: "Semi-formal",
     dresscode_semiformal_tip: "Smart attire: shirts, blouses, dress pants, simple dresses.",
-    avoid_colors: "Avoid This Color",
+    avoid_colors: "Avoid This Colors",
     color_white: "White",
     color_olive: "Olive green (#a8b99f)",
     color_blue: "Light blue (#98a4b0)",
