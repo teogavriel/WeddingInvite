@@ -922,17 +922,18 @@ color: hsl(222, 87%, 30%) !important;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  gap: 1.2rem;
-  width: 340px;      /* Wider box */
-  height: 180px;     /* Taller box */
+  gap: 1.5rem;
+  width: 440px;
+  height: 220px;
   margin: 0 auto;
   background: #f7f7f7;
-  border-radius: 1.2rem;
-  box-shadow: 0 2px 8px rgba(42,110,189,0.08);
+  border-radius: 1.5rem;
+  box-shadow: 0 2px 12px rgba(42,110,189,0.10);
   border: 2px solid #e0e0e0;
-  padding: 1.2rem 0.5rem 1rem 0.5rem;
+  padding: 2rem 1rem 2rem 1rem;
   z-index: 0;
-  overflow: hidden;
+  overflow: visible;
+  max-width: 98vw;
 }
 
 
@@ -948,31 +949,14 @@ color: hsl(222, 87%, 30%) !important;
 
 /*Colores que no pueden ir*/
 
-.color-circles {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 1.5rem;
-  width: 440px;      /* Más ancho para los círculos grandes */
-  height: 220px;
-  margin: 0 auto;
-  background: #f7f7f7;
-  border-radius: 1.5rem;
-  box-shadow: 0 2px 12px rgba(42,110,189,0.10);
-  border: 2px solid #e0e0e0;
-  padding: 2rem 1rem 2rem 1rem;
-  z-index: 0;
-  overflow: visible;
-}
 /* Los círculos en fila y con espacio suficiente */
+
 .color-circles-row {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  gap: 2rem;                  /* Espacio entre círculos */
+  gap: 2rem;
   width: 100%;
 }
 
@@ -982,12 +966,32 @@ color: hsl(222, 87%, 30%) !important;
   width: 90px;
   height: 90px;
   border-radius: 50%;
-  border: 1px solid #000000;
+  border: 3px solid #000;
   box-shadow: 0 2px 12px rgba(42,110,189,0.10);
   display: inline-block;
   margin: 0;
+  min-width: 0;
+  min-height: 0;
 }
 
+/* Responsive: Adapt box and circles on small screens */
+@media (max-width: 600px) {
+  .color-circles {
+    width: 98vw;
+    max-width: 98vw;
+    min-width: 0;
+    height: auto;
+    padding: 1.2rem 2vw 1.2rem 2vw;
+    gap: 1rem;
+  }
+  .color-circles-row {
+    gap: 0.7rem;
+  }
+  .color-circles .color-circle {
+    width: 60px;
+    height: 60px;
+  }
+}
 .tooltip-color:hover::after {
   opacity: 1;
 }
