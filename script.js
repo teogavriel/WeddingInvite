@@ -383,3 +383,128 @@ enableDragScroll('.vertical-collage');
 
   // ...rest of your code...
 });
+
+
+// ...existing code inside DOMContentLoaded...
+
+// 1. Detect browser language and show popup if English
+const browserLang = navigator.language.startsWith('en') ? 'en' : 'es';
+let currentLang = browserLang;
+
+// Only show popup if browser is English and not already Spanish
+if (browserLang === 'en') {
+  // 2. Create popup HTML
+  const langPopup = document.createElement('div');
+  langPopup.id = 'lang-popup';
+  langPopup.innerHTML = `
+    <div class="lang-popup-content">
+      <span>Your browser is in English. Continue reading in English?</span>
+      <button id="lang-continue-en">English</button>
+      <button id="lang-switch-es">Español</button>
+    </div>
+  `;
+  document.body.appendChild(langPopup);
+
+  // 3. Style the popup (you can move this to your CSS file)
+  const style = document.createElement('style');
+  style.textContent = `
+    #lang-popup {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      background: rgba(53,180,234,0.97);
+      color: #fff;
+      z-index: 5000;
+      text-align: center;
+      padding: 1rem 0.5rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      font-family: 'Montserrat', sans-serif;
+      animation: fadeInLangPopup 0.5s;
+    }
+    @keyframes fadeInLangPopup {
+      from { opacity: 0; top: -40px; }
+      to { opacity: 1; top: 0; }
+    }
+    .lang-popup-content {
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+      align-items: center;
+      justify-content: center;
+    }
+    .lang-popup-content button {
+      margin: 0 0.3rem;
+      padding: 0.4rem 1.2rem;
+      border: none;
+      border-radius: 999px;
+      background: #fff;
+      color: #35b4ea;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+    .lang-popup-content button:hover {
+      background: #35b4ea;
+      color: #fff;
+      border: 1px solid #fff;
+    }
+    @media (max-width: 600px) {
+      .lang-popup-content {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+      #lang-popup {
+        font-size: 0.95rem;
+        padding: 0.7rem 0.2rem;
+      }
+    }
+  `;
+  document.head.appendChild(style);
+
+  // 4. Button logic
+  document.getElementById('lang-continue-en').onclick = function() {
+    langPopup.remove();
+  };
+  document.getElementById('lang-switch-es').onclick = function() {
+    currentLang = 'es';
+    updateLanguage('es');
+    langPopup.remove();
+  };
+}
+
+// 5. Language switching function
+function updateLanguage(lang) {
+  const i18n = STRINGS[lang];
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (i18n[key]) {
+      el.textContent = i18n[key];
+    }
+    // For placeholders
+    if (el.hasAttribute('data-i18n-placeholder')) {
+      const phKey = el.getAttribute('data-i18n-placeholder');
+      if (i18n[phKey]) {
+        el.setAttribute('placeholder', i18n[phKey]);
+      }
+    }
+    // For tooltips
+    if (el.hasAttribute('data-tooltip')) {
+      const tipKey = el.getAttribute('data-i18n-tooltip');
+      if (tipKey && i18n[tipKey]) {
+        el.setAttribute('data-tooltip', i18n[tipKey]);
+      }
+    }
+  });
+  // If RSVP form is open, re-render it in the new language
+  const rsvpFormContainer = document.getElementById('rsvp-form-container');
+  if (rsvpFormContainer && !rsvpFormContainer.classList.contains('hidden')) {
+    renderRSVPForm();
+  }
+}
+
+// (Optional) If you want to allow switching language later, you can expose updateLanguage globally:
+// window.updateLanguage = updateLanguage;
+
+// ...rest of your code...

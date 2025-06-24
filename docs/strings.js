@@ -56,7 +56,7 @@ const STRINGS = {
 
     // Gifts
     gifts_title: "Regalos",
-    gifts_text: "Su presencia en nuestra boda será el mejor regalo. Pero si desean darnos otro obsequio, les agradeceremos que sea dinero para ayudarnos a pagar la luna de miel.",
+    gifts_text: "Lo único que realmente anhelamos es celebrarlo junto a ustedes. Pero si sienten ganas de sorprendernos con algo más, ¡una contribución para nuestra luna de miel será maravillosa!",
     gifts_btn: "💸 Transferencias",
     gifts_modal_title: "Información de transferencia",
     gifts_iban_colones: "Cuenta IBAN Colones:",
@@ -129,7 +129,7 @@ const STRINGS = {
 
     // Gifts
     gifts_title: "Gifts",
-    gifts_text: "Your presence is the best gift. But if you'd like to give another, we'd be grateful for contributions to our honeymoon.",
+    gifts_text: "All we truly wish for is to celebrate with you. But if you feel like surprising us with something extra, a contribution toward our honeymoon would be wonderful!",
     gifts_btn: "💸 Transfers",
     gifts_modal_title: "Transfer Information",
     gifts_iban_colones: "IBAN Colones Account:",
